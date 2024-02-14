@@ -2,7 +2,7 @@ package frc.robot.subsystems;
 
 import com.ctre.phoenix.sensors.CANCoder;
 import com.revrobotics.CANSparkMax;
-import com.revrobotics.CANSparkMax.ControlType;
+import com.revrobotics.CANSparkBase.ControlType;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import com.revrobotics.RelativeEncoder;
 import com.revrobotics.SparkMaxPIDController;
@@ -110,7 +110,7 @@ public class SwerveModule {
     CANSparkMaxUtil.setCANSparkMaxBusUsage(angleMotor, Usage.kPositionOnly);
     angleMotor.setSmartCurrentLimit(Constants.Swerve.ANGLE_CONTINUOUS_CURRENT_LIMIT);
     angleMotor.setInverted(Constants.Swerve.ANGLE_INVERT);
-    angleMotor.setIdleMode(Constants.Swerve.ANGLE_NEUTRAL_MODE);
+    // angleMotor.setIdleMode(Constants.Swerve.ANGLE_NEUTRAL_MODE);
 
     integratedAngleEncoder.setPositionConversionFactor(Constants.Swerve.ANGLE_CONVERSION_FACTOR);
 
@@ -130,7 +130,7 @@ public class SwerveModule {
     CANSparkMaxUtil.setCANSparkMaxBusUsage(driveMotor, Usage.kAll);
     driveMotor.setSmartCurrentLimit(Constants.Swerve.DRIVE_CONTINUOUS_CURRENT_LIMIT);
     driveMotor.setInverted(Constants.Swerve.DRIVE_INVERT);
-    driveMotor.setIdleMode(Constants.Swerve.DRIVE_NEUTRAL_MODE);
+    // driveMotor.setIdleMode(Constants.Swerve.DRIVE_NEUTRAL_MODE);
 
     driveEncoder.setVelocityConversionFactor(Constants.Swerve.DRIVE_CONVERSION_VELOCITY_FACTOR);
     // SmartDashboard.putNumber("Mod " + moduleNumber + " velocity conversion factor actual", driveEncoder.getVelocityConversionFactor());

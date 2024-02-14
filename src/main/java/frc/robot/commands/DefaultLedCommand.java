@@ -22,7 +22,7 @@ public class DefaultLedCommand extends Command {
 
     @Override
     public void initialize() {
-        alliance = DriverStation.getAlliance();
+        // alliance = DriverStation.getAlliance();
     }
 
     @Override

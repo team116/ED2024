@@ -1,7 +1,9 @@
 package frc.robot.subsystems;
 
+import edu.wpi.first.networktables.DoubleSubscriber;
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableInstance;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Limelight extends SubsystemBase {
@@ -16,12 +18,19 @@ public class Limelight extends SubsystemBase {
     public static final int LED_FORCE_BLINK = 2;
     public static final int LED_FORCE_ON = 3;
 
+    NetworkTableInstance limelighTableInstance;
     NetworkTable limelightTable;
     int streamModeToggleValue = STREAM_MODE_STANDARD;
     int currentStreamMode;
+    final DoubleSubscriber taSubscriber;
+    final DoubleSubscriber txSubscriber;
+    final DoubleSubscriber tySubscriber;
 
     public Limelight() {
-        limelightTable = NetworkTableInstance.getDefault().getTable(LIMELIGHT_HOST_NAME);
+        limelightTable = NetworkTableInstance.getDefault().getTable("datatable");
+        taSubscriber = limelightTable.getDoubleTopic("ta").subscribe(1.0);
+        txSubscriber = limelightTable.getDoubleTopic("tx").subscribe(1.0);
+        tySubscriber = limelightTable.getDoubleTopic("ty").subscribe(1.0);
     }
 
     public void toggleStreamMode() {
@@ -45,12 +54,26 @@ public class Limelight extends SubsystemBase {
         setLedMode(LED_FORCE_OFF);
     }
 
-    public boolean hasValidTarget(){
-        return limelightTable.getEntry("ta").getDouble(0.0d) > 0.05d;
+    public boolean hasValidTarget() {
+        SmartDashboard.putNumber("ta", taSubscriber.get());
+        return taSubscriber.get() > 0.05d;
     }
 
     public double targetAreaPercentageOfImage(){
-        return limelightTable.getEntry("ta").getDouble(0.0d);
+        SmartDashboard.putNumber("ta", taSubscriber.get());
+        return taSubscriber.get();
+    }
+
+    public double getTa() {
+        return taSubscriber.get();
+    }
+
+    public double getTx() {
+        return txSubscriber.get();
+    }
+
+    public double getTy() {
+        return tySubscriber.get();
     }
 
     /**
@@ -61,7 +84,8 @@ public class Limelight extends SubsystemBase {
      * @return a degree value from -29.8 to 29.8 degrees
      */
     public double horizontalOffsetFromCrosshairAsDegrees() {
-        return limelightTable.getEntry("tx").getDouble(0.0d);
+        SmartDashboard.putNumber("tx", txSubscriber.get());
+        return txSubscriber.get();
     }
 
 }

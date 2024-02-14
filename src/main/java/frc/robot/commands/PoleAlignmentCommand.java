@@ -2,6 +2,7 @@ package frc.robot.commands;
 
 import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.Limelight;
 import frc.robot.subsystems.Swerve;
@@ -29,7 +30,12 @@ public class PoleAlignmentCommand extends Command {
 
     @Override
     public void execute() {
+        SmartDashboard.putNumber("ta", limelight.getTa());
+        SmartDashboard.putNumber("tx", limelight.getTx());
+        SmartDashboard.putNumber("ty", limelight.getTy());
+
         double offsetAngleDegrees = limelight.horizontalOffsetFromCrosshairAsDegrees();
+        // double offsetDistanceMeters = limelight.
         if (stillNeedToMove(offsetAngleDegrees)) {
             if (!isActivelyMoving) {
                 isActivelyMoving = true;

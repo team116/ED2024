@@ -6,7 +6,7 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.RelativeEncoder;
 import com.revrobotics.SparkMaxLimitSwitch;
 import com.revrobotics.SparkMaxPIDController;
-import com.revrobotics.CANSparkMax.IdleMode;
+// import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
@@ -46,7 +46,7 @@ public class Arm extends SubsystemBase{
 
     public Arm(){
         armMotor = new CANSparkMax(Constants.ARM_MOTOR_ID, MotorType.kBrushless);
-        armMotor.setIdleMode(IdleMode.kBrake);
+        // armMotor.setIdleMode(IdleMode.kBrake);
 
         armCanCoder = new CANCoder(Constants.ARM_CAN_CODER_ID);
         armCanCoder.configAbsoluteSensorRange(AbsoluteSensorRange.Signed_PlusMinus180);
