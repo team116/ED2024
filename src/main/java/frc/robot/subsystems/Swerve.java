@@ -209,23 +209,23 @@ public class Swerve extends SubsystemBase {
     // swerveOdometry.update(getYaw(), getStates());
     field.setRobotPose(getPose());
 
-    // SmartDashboard.putString("Pose ", getPose().toString());
-    // for (SwerveModule mod : mSwerveMods) {
-    //   String modName = "Mod " + mod.moduleNumber;
-    //   // SmartDashboard.putNumber(
-    //   //     modName + " Cancoder", mod.getCanCoder().getDegrees());
-    //   // SmartDashboard.putNumber(
-    //   //     modName + " Integrated", mod.getState().angle.getDegrees());
-    //   // SmartDashboard.putNumber(
-    //   //     modName + " Velocity", mod.getState().speedMetersPerSecond);
-    //   // SmartDashboard.putNumber(
-    //   //   modName + " Desired", mod.getDesiredAngleAsDegrees());
-    //   // SmartDashboard.putNumber(
-    //   //   modName + " Adj Cancoder", mod.getCanCoder().getDegrees() - mod.getAngleOffset());
-    //   // SmartDashboard.putNumber(modName + " distance Meters", mod.getPosition().distanceMeters);
-    //   // SmartDashboard.putNumber(modName + " drive motor angle", mod.getPosition().angle.getDegrees());
-    //   // SmartDashboard.putNumber(modName + " drive motor encoder", mod.getDriveEncoder());
-    // }
+    SmartDashboard.putString("Pose ", getPose().toString());
+    for (SwerveModule mod : mSwerveMods) {
+      String modName = "Mod " + mod.moduleNumber;
+      SmartDashboard.putNumber(
+          modName + " Cancoder", mod.getCanCoder().getDegrees());
+      SmartDashboard.putNumber(
+          modName + " Integrated", mod.getState().angle.getDegrees());
+      SmartDashboard.putNumber(
+          modName + " Velocity", mod.getState().speedMetersPerSecond);
+      SmartDashboard.putNumber(
+        modName + " Desired", mod.getDesiredAngleAsDegrees());
+      SmartDashboard.putNumber(
+        modName + " Adj Cancoder", mod.getCanCoder().getDegrees() - mod.getAngleOffset());
+      SmartDashboard.putNumber(modName + " distance Meters", mod.getPosition().distanceMeters);
+      SmartDashboard.putNumber(modName + " drive motor angle", mod.getPosition().angle.getDegrees());
+      SmartDashboard.putNumber(modName + " drive motor encoder", mod.getDriveEncoder());
+    }
   }
 
   public boolean inSlowMode() {
