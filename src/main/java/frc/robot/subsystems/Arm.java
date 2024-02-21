@@ -4,19 +4,18 @@ import com.ctre.phoenix.sensors.AbsoluteSensorRange;
 import com.ctre.phoenix.sensors.CANCoder;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.RelativeEncoder;
-import com.revrobotics.SparkMaxLimitSwitch;
-import com.revrobotics.SparkMaxPIDController;
-// import com.revrobotics.CANSparkMax.IdleMode;
-import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+import com.revrobotics.SparkLimitSwitch;
+import com.revrobotics.SparkPIDController;
+import com.revrobotics.CANSparkLowLevel.MotorType;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 public class Arm extends SubsystemBase{
     private CANSparkMax armMotor;
     private CANCoder armCanCoder;
-    private SparkMaxLimitSwitch armTopLimitSwitch;
-    private SparkMaxLimitSwitch armBottomLimitSwitch;
-    private SparkMaxPIDController armMotorController;
+    private SparkLimitSwitch armTopLimitSwitch;
+    private SparkLimitSwitch armBottomLimitSwitch;
+    private SparkPIDController armMotorController;
     private RelativeEncoder armEncoder;
     private double desiredCANCoderPosition;
 
@@ -54,9 +53,9 @@ public class Arm extends SubsystemBase{
         armEncoder = armMotor.getEncoder();
         armEncoder.setPosition(0.0);
 
-        armTopLimitSwitch = armMotor.getReverseLimitSwitch(SparkMaxLimitSwitch.Type.kNormallyClosed);
+        armTopLimitSwitch = armMotor.getReverseLimitSwitch(SparkLimitSwitch.Type.kNormallyClosed);
         armTopLimitSwitch.enableLimitSwitch(true);
-        armBottomLimitSwitch = armMotor.getForwardLimitSwitch(SparkMaxLimitSwitch.Type.kNormallyClosed);
+        armBottomLimitSwitch = armMotor.getForwardLimitSwitch(SparkLimitSwitch.Type.kNormallyClosed);
         armBottomLimitSwitch.enableLimitSwitch(false);
         
         armMotorController = armMotor.getPIDController();
