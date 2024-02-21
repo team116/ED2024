@@ -27,7 +27,7 @@ public class Limelight extends SubsystemBase {
     final DoubleSubscriber tySubscriber;
 
     public Limelight() {
-        limelightTable = NetworkTableInstance.getDefault().getTable("datatable");
+        limelightTable = NetworkTableInstance.getDefault().getTable(LIMELIGHT_HOST_NAME);
         taSubscriber = limelightTable.getDoubleTopic("ta").subscribe(1.0);
         txSubscriber = limelightTable.getDoubleTopic("tx").subscribe(1.0);
         tySubscriber = limelightTable.getDoubleTopic("ty").subscribe(1.0);
