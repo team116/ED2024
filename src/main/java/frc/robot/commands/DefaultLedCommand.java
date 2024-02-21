@@ -28,20 +28,20 @@ public class DefaultLedCommand extends Command {
     @Override
     public void execute() {
         if (gunnerLogitech.getRawButton(6)) {  // FIXME: Might want as gunner station switch to "hold"
-            SmartDashboard.putString("led element button", "PRESSED");
+            // SmartDashboard.putString("led element button", "PRESSED");
             setLedsToDesiredElementColor();
         } else {
-            SmartDashboard.putString("led element button", "NOT PRESSED");
+            // SmartDashboard.putString("led element button", "NOT PRESSED");
             setLedsToAllianceColor();
         }
     }
 
     private void setLedsToDesiredElementColor() {
         if (gunnerStation.getRawButton(7)) {  // FIXME: Button 3, 5, or something else?  [1,2,4] already in use
-            SmartDashboard.putString("led element color", "YELLOW");
+            // SmartDashboard.putString("led element color", "YELLOW");
             leds.setColor(Leds.Color.YELLOW);
         } else {
-            SmartDashboard.putString("led element color", "PURPLE");
+            // SmartDashboard.putString("led element color", "PURPLE");
             leds.setColor(Leds.Color.PURPLE);
         }
     }

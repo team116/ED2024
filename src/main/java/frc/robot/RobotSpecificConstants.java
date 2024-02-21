@@ -5,7 +5,7 @@ import edu.wpi.first.math.util.Units;
 
 public final class RobotSpecificConstants {
     
-    public static final boolean IS_COMPETITION_ROBOT = false; // Wonder if we can test robot itself to determine this
+    public static final boolean IS_COMPETITION_ROBOT = true; // Wonder if we can test robot itself to determine this
 
     public static double getFrontToBackAxleToAxleMeters() {
         return Units.inchesToMeters(ROBOT_SPECIFIC_CONSTANTS.getFrontToBackAxleToAxleInches());
@@ -51,10 +51,10 @@ public final class RobotSpecificConstants {
     private static final class CompetitionRobot implements SpecificConstants {
         public double getFrontToBackAxleToAxleInches() { return 24.875; }
         public double getSideToSideTreadCenterToTreadCenterInches() { return 24.5; }
-        public double getAngleOffsetDegreesMod0() { return 289.51171875; }
-        public double getAngleOffsetDegreesMod1() { return 331.259765625; }
-        public double getAngleOffsetDegreesMod2() { return 26.103515625; }
-        public double getAngleOffsetDegreesMod3() { return 358.945312500; }
+        public double getAngleOffsetDegreesMod0() { return 200.478515625; }
+        public double getAngleOffsetDegreesMod1() { return 242.490234375; }
+        public double getAngleOffsetDegreesMod2() { return 299.4433593749; }
+        public double getAngleOffsetDegreesMod3() { return 269.0223093125; }
     }
 
     private static final class TestRobot implements SpecificConstants {

@@ -55,12 +55,12 @@ public class Limelight extends SubsystemBase {
     }
 
     public boolean hasValidTarget() {
-        SmartDashboard.putNumber("ta", taSubscriber.get());
+        // SmartDashboard.putNumber("ta", taSubscriber.get());
         return taSubscriber.get() > 0.05d;
     }
 
     public double targetAreaPercentageOfImage(){
-        SmartDashboard.putNumber("ta", taSubscriber.get());
+        // SmartDashboard.putNumber("ta", taSubscriber.get());
         return taSubscriber.get();
     }
 
@@ -76,6 +76,8 @@ public class Limelight extends SubsystemBase {
         return tySubscriber.get();
     }
 
+    // public 
+
     /**
      * Returns a degree value in the range of -29.8 to 29.8 degrees, that represents how far off the
      * targeting crosshair on the limelight is horizontally away from the center of the recognized
@@ -84,7 +86,7 @@ public class Limelight extends SubsystemBase {
      * @return a degree value from -29.8 to 29.8 degrees
      */
     public double horizontalOffsetFromCrosshairAsDegrees() {
-        SmartDashboard.putNumber("tx", txSubscriber.get());
+        // SmartDashboard.putNumber("tx", txSubscriber.get());
         return txSubscriber.get();
     }
 

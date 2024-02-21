@@ -7,14 +7,14 @@ import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.Limelight;
 import frc.robot.subsystems.Swerve;
 
-public class PoleAlignmentCommand extends Command {
+public class AprilTagAlignmentCommand extends Command {
     private Swerve swerve;
     private Limelight limelight;
     private int stabilizedCount;
     private boolean isActivelyMoving;
     private double startTime;
 
-    public PoleAlignmentCommand(Swerve swerveSubstem, Limelight limelightSubsystem) {
+    public AprilTagAlignmentCommand(Swerve swerveSubstem, Limelight limelightSubsystem) {
         this.swerve = swerveSubstem;
         this.limelight = limelightSubsystem;
         addRequirements(swerveSubstem, limelightSubsystem);
@@ -44,7 +44,7 @@ public class PoleAlignmentCommand extends Command {
                 if (offsetAngleDegrees > 0.0d) {
                     metersPerSecondSpeed = -metersPerSecondSpeed;
                 }
-                swerve.drive(new Translation2d(0.0d, metersPerSecondSpeed), 0, false, true);
+                swerve.drive(new Translation2d(0.0d, 0.0d), metersPerSecondSpeed, false, true);
             }
         } else {
             isActivelyMoving = false;

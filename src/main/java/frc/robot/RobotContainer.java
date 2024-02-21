@@ -103,7 +103,7 @@ public class RobotContainer {
 
     limelight.setDefaultCommand(new DefaultLimelightCommand(limelight));
 
-    arm.setDefaultCommand(new DefaultArmCommand(arm, gunnerLogitech, gunnerStation));
+    // arm.setDefaultCommand(new DefaultArmCommand(arm, gunnerLogitech, gunnerStation));
 
     grabber.setDefaultCommand(new GrabberCommand(grabber));
 
@@ -119,17 +119,17 @@ public class RobotContainer {
     // sendableChooser.addOption("Double Score Red Bump", new DoubleScoreRedBump(s_Swerve, arm, grabber, limelight));
     // sendableChooser.addOption("Double Score Red Easy", new DoubleScoreRedEasy(s_Swerve, arm, grabber, limelight));
     // sendableChooser.addOption("Score cone high goal", new HighGoalCone(s_Swerve, arm, grabber, limelight));
-    //sendableChooser.addOption("Score cone mid goal", new MidGoalCone(s_Swerve, arm, grabber));
+    // sendableChooser.addOption("Score cone mid goal", new MidGoalCone(s_Swerve, arm, grabber));
     // sendableChooser.addOption("Score cone low goal", new GroundGoal(s_Swerve, arm, grabber));
     // sendableChooser.addOption("Charge station after high goal", new ChargeStationAfterHighCone(s_Swerve, arm, grabber, limelight));
     // sendableChooser.addOption("Charge station (simple) after high goal", new ChargeStationAfterHighConeSimple(s_Swerve, arm, grabber, limelight));
     // sendableChooser.addOption("Charge station NO MOVE AFTER high goal", new ChargeStationAfterHighConeNoMove(s_Swerve, arm, grabber, limelight));
-    //sendableChooser.addOption("Blue bump side high goal", new HighGoalBlueBumpSide(s_Swerve, arm, grabber, limelight));
-    //sendableChooser.addOption("Red bump side high goal", new HighGoalRedBumpSide(s_Swerve, arm, grabber, limelight));
-    //sendableChooser.addOption("Drive forward until level", new DriveDirectionUntilLevel(s_Swerve, Direction.FORWARD));
-    //sendableChooser.addOption("Scores high cone then gets a second peice and scores in ground goal", new PickUpSecondPieceAfterHighConeAndScoreInGroundGoal(s_Swerve, arm, grabber, limelight, gyro));
-    //sendableChooser.addOption("Rotate 180 by encoders", new TestRotationByEncoders(s_Swerve, gyro));
-    //sendableChooser.addOption("Rotate 180 by gyro", new TestRotationByGyro(s_Swerve, gyro));
+    // sendableChooser.addOption("Blue bump side high goal", new HighGoalBlueBumpSide(s_Swerve, arm, grabber, limelight));
+    // sendableChooser.addOption("Red bump side high goal", new HighGoalRedBumpSide(s_Swerve, arm, grabber, limelight));
+    // sendableChooser.addOption("Drive forward until level", new DriveDirectionUntilLevel(s_Swerve, Direction.FORWARD));
+    // sendableChooser.addOption("Scores high cone then gets a second peice and scores in ground goal", new PickUpSecondPieceAfterHighConeAndScoreInGroundGoal(s_Swerve, arm, grabber, limelight, gyro));
+    // sendableChooser.addOption("Rotate 180 by encoders", new TestRotationByEncoders(s_Swerve, gyro));
+    // sendableChooser.addOption("Rotate 180 by gyro", new TestRotationByGyro(s_Swerve, gyro));
     SmartDashboard.putData(sendableChooser);
   }
 
@@ -145,7 +145,7 @@ public class RobotContainer {
     driverLeftTrigger.onTrue(new InstantCommand(() -> s_Swerve.zeroGyro()));
 
     // toggleTesterButton.onTrue(new InstantCommand(() -> limelight.toggleStreamMode()));
-    autoAlignMacroButton.onTrue(new PoleAlignmentCommand(s_Swerve, limelight));
+    autoAlignMacroButton.onTrue(new AprilTagAlignmentCommand(s_Swerve, limelight));
 
     resetAngleEncodersButton.onTrue(new InstantCommand(() -> s_Swerve.resetAngleEncoders()));
 

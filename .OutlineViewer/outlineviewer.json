@@ -1,8 +1,33 @@
 {
-  "Retained Values": {
-    "open": false
+  "Connections": {
+    "open": true
   },
-  "Transitory Values": {
-    "open": false
+  "NetworkTables Settings": {
+    "mode": "Client (NT4)"
+  },
+  "Server": {
+    "Publishers": {
+      "open": true
+    },
+    "Subscribers": {
+      "open": true
+    }
+  },
+  "retained": {
+    "limelight": {
+      "open": true
+    }
+  },
+  "transitory": {
+    "LiveWindow": {
+      ".status": {
+        "open": true
+      }
+    },
+    "SmartDashboard": {
+      "SendableChooser[0]": {
+        "open": true
+      }
+    }
   }
 }
