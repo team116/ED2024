@@ -1,5 +1,6 @@
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.Limelight;
 
@@ -15,6 +16,11 @@ public class DefaultLimelightCommand extends Command {
     public void initialize() {
         limelight.setStreamMode(Limelight.STREAM_MODE_PIP_SECONDARY);
         limelight.ledOn();
+        
+    }
+
+    public void execute() {
+        SmartDashboard.putNumber("Distance Feet", limelight.distanceFromAprilTagFeet());
     }
 
     @Override
