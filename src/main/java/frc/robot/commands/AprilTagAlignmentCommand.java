@@ -13,7 +13,7 @@ public class AprilTagAlignmentCommand extends Command {
     private int stabilizedCount;
     private boolean isActivelyMoving;
     private double startTime;
-    private double desiredDistanceFromAprilTagFeet = 10;
+    private double desiredDistanceFromAprilTagInches = 120;
 
     public AprilTagAlignmentCommand(Swerve swerveSubstem, Limelight limelightSubsystem) {
         this.swerve = swerveSubstem;
@@ -31,17 +31,16 @@ public class AprilTagAlignmentCommand extends Command {
 
     @Override
     public void execute() {
-        SmartDashboard.putNumber("Distance From Limelight in Feet", limelight.distanceFromAprilTagFeet());
+        SmartDashboard.putNumber("Distance From April Tag in Feet", limelight.getDistanceFromAprilTagFeet());
+        SmartDashboard.putNumber("Distance From April Tag Inches", limelight.getDistanceFromAprilTagInches());
         SmartDashboard.putNumber("ta", limelight.getTa());
         SmartDashboard.putNumber("tx", limelight.getTx());
         SmartDashboard.putNumber("ty", limelight.getTy());
         
         double offsetAngleDegrees = limelight.horizontalOffsetFromCrosshairAsDegrees();
-        // double offsetDistanceMeters = limelight.
+        double actualDistanceFromAprilTagInches = limelight.getDistanceFromAprilTagInches();
 
-        if (stillNeedToRotate(offsetAngleDegrees) || stillNeedToMove(desiredDistanceFromAprilTagFeet)) {
-            // if (!isActivelyMoving) {
-                isActivelyMoving = true;
+        if (stillNeedToRotate(offsetAngleDegrees) || stillNeedToMove(desiredDistanceFromAprilTagInches, actualDistanceFromAprilTagInches)) {
                 stabilizedCount = 0;
                 double degreesPerSecondSpeed = 0.125d;
                 double metersPerSecondSpeed = 0.125d;
@@ -52,15 +51,25 @@ public class AprilTagAlignmentCommand extends Command {
                 } else {
                     degreesPerSecondSpeed = 0.0d;
                 }
-                if (stillNeedToMove(offsetAngleDegrees)) {
-                    if (needToMoveBackward(desiredDistanceFromAprilTagFeet)) {
+                if (stillNeedToMove(desiredDistanceFromAprilTagInches, actualDistanceFromAprilTagInches)) {
+                    // if (actualDistanceFromAprilTagInches > 120) {
+                    //     metersPerSecondSpeed = 1.0d;
+                    // } else if (actualDistanceFromAprilTagInches > 90) {
+                    //     metersPerSecondSpeed = 0.75d;
+                    // } else if (actualDistanceFromAprilTagInches > 60) {
+                    //     metersPerSecondSpeed = 0.5d;
+                    // } else if (actualDistanceFromAprilTagInches > 30) {
+                    //     metersPerSecondSpeed = 0.25;
+                    // } else if (actualDistanceFromAprilTagInches > 10) {
+                    //     metersPerSecondSpeed = 0.125d;
+                    // }
+                    if (needToMoveBackward(desiredDistanceFromAprilTagInches)) {
                         metersPerSecondSpeed = -metersPerSecondSpeed;
                     }
                 } else {
                     metersPerSecondSpeed = 0.0d;
                 }
                 swerve.drive(new Translation2d(metersPerSecondSpeed, 0.0d), degreesPerSecondSpeed, false, true);
-            // }
         } else {
             isActivelyMoving = false;
             swerve.drive(new Translation2d(0.0d, 0.0d), 0, false, true);
@@ -84,19 +93,19 @@ public class AprilTagAlignmentCommand extends Command {
                Math.abs(limelight.horizontalOffsetFromCrosshairAsDegrees()) > 0.75d;
     }
 
-    private boolean stillNeedToMove(double distanceFeet) {
-        return needToMoveForward(distanceFeet) || needToMoveBackward(distanceFeet);
+    private boolean stillNeedToMove(double desiredDistanceInches, double distanceFromAprilTagInches) {
+        return limelight.hasValidTarget() && (Math.abs((distanceFromAprilTagInches - desiredDistanceInches)) > 0.75d);
     }
 
-    private boolean needToMoveForward(double desiredDistanceMeters) {
-        return limelight.hasValidTarget() && desiredDistanceMeters < limelight.distanceFromAprilTagFeet();
+    private boolean needToMoveForward(double desiredDistanceInches) {
+        return limelight.hasValidTarget() && desiredDistanceInches < limelight.getDistanceFromAprilTagInches();
     }
 
-    private boolean needToMoveBackward(double desiredDistanceMeters) {
-        return limelight.hasValidTarget() && desiredDistanceMeters > limelight.distanceFromAprilTagFeet();
+    private boolean needToMoveBackward(double desiredDistanceInches) {
+        return limelight.hasValidTarget() && desiredDistanceInches > limelight.getDistanceFromAprilTagInches();
     }
 
-    public void setDesiredDistanceFromAprilTag(double distanceFeet) {
-        desiredDistanceFromAprilTagFeet = distanceFeet;
+    public void setDesiredDistanceFromAprilTagInches(double distanceInches) {
+        desiredDistanceFromAprilTagInches = distanceInches;
     }
 }

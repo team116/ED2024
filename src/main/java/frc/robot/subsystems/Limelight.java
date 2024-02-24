@@ -90,7 +90,11 @@ public class Limelight extends SubsystemBase {
         return txSubscriber.get();
     }
 
-    public double distanceFromAprilTagFeet() {
-        return (15.86610634 * Math.pow(getTa(), -0.4458221066));
+    public double getDistanceFromAprilTagInches() {
+        return (185.267402 * Math.pow(getTa(), -0.4997426126));
+    }
+
+    public double getDistanceFromAprilTagFeet() {
+        return getDistanceFromAprilTagInches() / 12;
     }
 }
