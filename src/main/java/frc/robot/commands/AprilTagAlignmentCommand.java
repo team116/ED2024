@@ -11,9 +11,8 @@ public class AprilTagAlignmentCommand extends Command {
     private Swerve swerve;
     private Limelight limelight;
     private int stabilizedCount;
-    private boolean isActivelyMoving;
     private double startTime;
-    private double desiredDistanceFromAprilTagInches = 240;
+    private double desiredDistanceFromAprilTagInches = 60;
 
     public AprilTagAlignmentCommand(Swerve swerveSubstem, Limelight limelightSubsystem) {
         this.swerve = swerveSubstem;
@@ -25,7 +24,6 @@ public class AprilTagAlignmentCommand extends Command {
     public void initialize() {
         startTime = Timer.getFPGATimestamp();
         stabilizedCount = 0;
-        isActivelyMoving = false;
         limelight.ledOn();  // NOTE: Not sure what the delay is between asking to turn on and it being on
     }
 
@@ -73,7 +71,6 @@ public class AprilTagAlignmentCommand extends Command {
                 }
                 swerve.drive(new Translation2d(metersPerSecondSpeed, 0.0d), degreesPerSecondSpeed, false, true);
         } else {
-            isActivelyMoving = false;
             swerve.drive(new Translation2d(0.0d, 0.0d), 0, false, true);
             ++stabilizedCount;
         }
