@@ -13,7 +13,7 @@ public class AprilTagAlignmentCommand extends Command {
     private int stabilizedCount;
     private boolean isActivelyMoving;
     private double startTime;
-    private double desiredDistanceFromAprilTagInches = 120;
+    private double desiredDistanceFromAprilTagInches = 240;
 
     public AprilTagAlignmentCommand(Swerve swerveSubstem, Limelight limelightSubsystem) {
         this.swerve = swerveSubstem;
@@ -31,6 +31,7 @@ public class AprilTagAlignmentCommand extends Command {
 
     @Override
     public void execute() {
+        SmartDashboard.putNumber("Desired Distance From April Tag Inches", desiredDistanceFromAprilTagInches);
         SmartDashboard.putNumber("Distance From April Tag in Feet", limelight.getDistanceFromAprilTagFeet());
         SmartDashboard.putNumber("Distance From April Tag Inches", limelight.getDistanceFromAprilTagInches());
         SmartDashboard.putNumber("ta", limelight.getTa());
@@ -39,6 +40,7 @@ public class AprilTagAlignmentCommand extends Command {
         
         double offsetAngleDegrees = limelight.horizontalOffsetFromCrosshairAsDegrees();
         double actualDistanceFromAprilTagInches = limelight.getDistanceFromAprilTagInches();
+        double distancedLeftToTravelInches = Math.abs(desiredDistanceFromAprilTagInches - actualDistanceFromAprilTagInches);
 
         if (stillNeedToRotate(offsetAngleDegrees) || stillNeedToMove(desiredDistanceFromAprilTagInches, actualDistanceFromAprilTagInches)) {
                 stabilizedCount = 0;
@@ -52,17 +54,17 @@ public class AprilTagAlignmentCommand extends Command {
                     degreesPerSecondSpeed = 0.0d;
                 }
                 if (stillNeedToMove(desiredDistanceFromAprilTagInches, actualDistanceFromAprilTagInches)) {
-                    // if (actualDistanceFromAprilTagInches > 120) {
-                    //     metersPerSecondSpeed = 1.0d;
-                    // } else if (actualDistanceFromAprilTagInches > 90) {
-                    //     metersPerSecondSpeed = 0.75d;
-                    // } else if (actualDistanceFromAprilTagInches > 60) {
-                    //     metersPerSecondSpeed = 0.5d;
-                    // } else if (actualDistanceFromAprilTagInches > 30) {
-                    //     metersPerSecondSpeed = 0.25;
-                    // } else if (actualDistanceFromAprilTagInches > 10) {
-                    //     metersPerSecondSpeed = 0.125d;
-                    // }
+                    if (distancedLeftToTravelInches > 120) {
+                        metersPerSecondSpeed = 1.0d;
+                    } else if (distancedLeftToTravelInches > 90) {
+                        metersPerSecondSpeed = 0.75d;
+                    } else if (distancedLeftToTravelInches > 60) {
+                        metersPerSecondSpeed = 0.5d;
+                    } else if (distancedLeftToTravelInches > 30) {
+                        metersPerSecondSpeed = 0.25;
+                    } else if (distancedLeftToTravelInches > 10) {
+                        metersPerSecondSpeed = 0.125d;
+                    }
                     if (needToMoveBackward(desiredDistanceFromAprilTagInches)) {
                         metersPerSecondSpeed = -metersPerSecondSpeed;
                     }
