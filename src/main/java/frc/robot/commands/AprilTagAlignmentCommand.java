@@ -29,6 +29,8 @@ public class AprilTagAlignmentCommand extends Command {
 
     @Override
     public void execute() {
+        setDesiredDistanceFromAprilTagInches(SmartDashboard.getNumber("Desired Distance From April Tag Inches", desiredDistanceFromAprilTagInches));
+        
         SmartDashboard.putNumber("Desired Distance From April Tag Inches", desiredDistanceFromAprilTagInches);
         SmartDashboard.putNumber("Distance From April Tag in Feet", limelight.getDistanceFromAprilTagFeet());
         SmartDashboard.putNumber("Distance From April Tag Inches", limelight.getDistanceFromAprilTagInches());
@@ -36,6 +38,7 @@ public class AprilTagAlignmentCommand extends Command {
         SmartDashboard.putNumber("tx", limelight.getTx());
         SmartDashboard.putNumber("ty", limelight.getTy());
         
+    
         double offsetAngleDegrees = limelight.horizontalOffsetFromCrosshairAsDegrees();
         double actualDistanceFromAprilTagInches = limelight.getDistanceFromAprilTagInches();
         double distancedLeftToTravelInches = Math.abs(desiredDistanceFromAprilTagInches - actualDistanceFromAprilTagInches);

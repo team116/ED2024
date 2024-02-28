@@ -101,7 +101,7 @@ public class RobotContainer {
             () -> rotationShape(-driver.getRawAxis(rotationAxis)),
             () -> robotCentricState.getAsBoolean()));
 
-    limelight.setDefaultCommand(new DefaultLimelightCommand(limelight));
+    // limelight.setDefaultCommand(new DefaultLimelightCommand(limelight));
 
     // arm.setDefaultCommand(new DefaultArmCommand(arm, gunnerLogitech, gunnerStation));
 

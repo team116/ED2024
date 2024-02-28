@@ -19,11 +19,6 @@ public class DefaultLimelightCommand extends Command {
         
     }
 
-    public void execute() {
-        SmartDashboard.putNumber("Distance Inches", limelight.getDistanceFromAprilTagInches());
-        SmartDashboard.putNumber("Distance Feet", limelight.getDistanceFromAprilTagFeet());
-    }
-
     @Override
     public void end(boolean interrupted) {
         limelight.ledOff();
