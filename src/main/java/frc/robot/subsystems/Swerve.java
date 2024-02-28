@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj.smartdashboard.Field2d;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
+import frc.robot.RobotSpecificConstants;
 
 public class Swerve extends SubsystemBase {
   private final Pigeon2 gyro;
@@ -30,13 +31,23 @@ public class Swerve extends SubsystemBase {
     gyro.configFactoryDefault();
     zeroGyro();
 
-    mSwerveMods =
-        new SwerveModule[] {
-          new SwerveModule(0, Constants.Swerve.MOD_0.CONSTANTS),
-          new SwerveModule(1, Constants.Swerve.MOD_1.CONSTANTS),
-          new SwerveModule(2, Constants.Swerve.MOD_2.CONSTANTS),
-          new SwerveModule(3, Constants.Swerve.MOD_3.CONSTANTS)
-        };
+    if (RobotSpecificConstants.IS_COMPETITION_ROBOT) {
+      mSwerveMods =
+          new SwerveModule[] {
+            new SwerveModule(0, Constants.Swerve.MOD_0.CONSTANTS), // LF
+            new SwerveModule(1, Constants.Swerve.MOD_1.CONSTANTS), // RF
+            new SwerveModule(2, Constants.Swerve.MOD_2.CONSTANTS), // LR
+            new SwerveModule(3, Constants.Swerve.MOD_3.CONSTANTS)  // RR
+          };
+    } else {
+      mSwerveMods =
+          new SwerveModule[] {
+            new SwerveModule(1, Constants.Swerve.MOD_1.CONSTANTS), // LF
+            new SwerveModule(0, Constants.Swerve.MOD_0.CONSTANTS), // RF
+            new SwerveModule(3, Constants.Swerve.MOD_3.CONSTANTS), // LR
+            new SwerveModule(2, Constants.Swerve.MOD_2.CONSTANTS)  // RR
+          };
+    }
 
     swerveOdometry = new SwerveDriveOdometry(Constants.Swerve.SWERVE_KINEMATICS, getYaw(), getPositions());
 
