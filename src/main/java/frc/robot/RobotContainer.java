@@ -31,8 +31,8 @@ import frc.robot.subsystems.*;
 public class RobotContainer {
   /* Controllers */
   private final Joystick driver = new Joystick(0);
-  private final Joystick gunnerStation = new Joystick(1);
-  private final Joystick gunnerLogitech = new Joystick(2);
+  //private final Joystick gunnerStation = new Joystick(1);
+  //private final Joystick gunnerLogitech = new Joystick(2);
 
   /* Drive Controls */
   private final int translationAxis = XboxController.Axis.kLeftY.value;
@@ -55,17 +55,17 @@ public class RobotContainer {
   // private final JoystickButton armMotorReverse =
   //     new JoystickButton(driver, XboxController.Button.kA.value);
 
-  private final JoystickButton enableArmLimitSwitches =
-      new JoystickButton(gunnerStation, 4);
+  // private final JoystickButton enableArmLimitSwitches =
+  //     new JoystickButton(gunnerStation, 4);
 
-  private final JoystickButton autoAlignMacroButton =
-      new JoystickButton(driver, XboxController.Button.kB.value);
+  // private final JoystickButton autoAlignMacroButton =
+  //     new JoystickButton(driver, XboxController.Button.kB.value);
 
-  private final JoystickButton resetAngleEncodersButton =
-      new JoystickButton(driver, XboxController.Button.kY.value);
+  // private final JoystickButton resetAngleEncodersButton =
+  //     new JoystickButton(driver, XboxController.Button.kY.value);
 
-  private final JoystickButton gunnerIntakeButton = new JoystickButton(gunnerStation, 1);
-  private final JoystickButton gunnerOutakeButton = new JoystickButton(gunnerStation, 2);
+  //private final JoystickButton gunnerIntakeButton = new JoystickButton(gunnerStation, 1);
+  //private final JoystickButton gunnerOutakeButton = new JoystickButton(gunnerStation, 2);
 
   private final CommandXboxController driverXBoxController = new CommandXboxController(Constants.DRIVER_XBOX_CONTROLLER_PORT);
 
@@ -101,11 +101,11 @@ public class RobotContainer {
 
     limelight.setDefaultCommand(new DefaultLimelightCommand(limelight));
 
-    arm.setDefaultCommand(new DefaultArmCommand(arm, gunnerLogitech, gunnerStation));
+    //arm.setDefaultCommand(new DefaultArmCommand(arm, gunnerLogitech, gunnerStation));
 
-    grabber.setDefaultCommand(new GrabberCommand(grabber));
+    //grabber.setDefaultCommand(new GrabberCommand(grabber));
 
-    leds.setDefaultCommand(new DefaultLedCommand(leds, gunnerLogitech, gunnerStation));
+    //leds.setDefaultCommand(new DefaultLedCommand(leds, gunnerLogitech, gunnerStation));
 
     // Configure the button bindings
     configureButtonBindings();
@@ -143,9 +143,9 @@ public class RobotContainer {
     driverLeftTrigger.onTrue(new InstantCommand(() -> s_Swerve.zeroGyro()));
 
     // toggleTesterButton.onTrue(new InstantCommand(() -> limelight.toggleStreamMode()));
-    autoAlignMacroButton.onTrue(new PoleAlignmentCommand(s_Swerve, limelight));
+    //autoAlignMacroButton.onTrue(new PoleAlignmentCommand(s_Swerve, limelight));
 
-    resetAngleEncodersButton.onTrue(new InstantCommand(() -> s_Swerve.resetAngleEncoders()));
+    //resetAngleEncodersButton.onTrue(new InstantCommand(() -> s_Swerve.resetAngleEncoders()));
 
     //armMotorForward.onTrue(new InstantCommand(() -> arm.moveUp()));
     //armMotorReverse.onTrue(new InstantCommand(() -> arm.moveDown()));
@@ -162,16 +162,16 @@ public class RobotContainer {
     // Trigger armReverseTrigger = dpadDown.whileTrue(new RepeatCommand(new InstantCommand(() -> arm.moveDown(), arm)));
     // armReverseTrigger.onFalse(new InstantCommand(() -> arm.stop(), arm));
 
-    enableArmLimitSwitches.onTrue(new InstantCommand(() -> arm.disableLimitSwitches()));
-    enableArmLimitSwitches.onFalse(new InstantCommand(() -> arm.enableLimitSwitches()));
+    //enableArmLimitSwitches.onTrue(new InstantCommand(() -> arm.disableLimitSwitches()));
+    //enableArmLimitSwitches.onFalse(new InstantCommand(() -> arm.enableLimitSwitches()));
 
     //dpadUp.whileTrue(new RepeatCommand(new InstantCommand(() -> System.out.println("arm up"))));
     //dpadDown.whileTrue(new RepeatCommand(new InstantCommand(() -> System.out.println("arm down"))));
     // driverLeftTrigger.whileTrue(new RepeatCommand(new InstantCommand(() -> grabber.getRidOfGamePiece(), grabber)));
     // driverRightTrigger.whileTrue(new RepeatCommand(new InstantCommand(() -> grabber.intakeGamePiece(), grabber)));
 
-    gunnerOutakeButton.whileTrue(new RepeatCommand(new InstantCommand(() -> grabber.getRidOfGamePiece(), grabber)));
-    gunnerIntakeButton.whileTrue(new RepeatCommand(new InstantCommand(() -> grabber.intakeGamePiece(), grabber)));
+    //gunnerOutakeButton.whileTrue(new RepeatCommand(new InstantCommand(() -> grabber.getRidOfGamePiece(), grabber)));
+    //gunnerIntakeButton.whileTrue(new RepeatCommand(new InstantCommand(() -> grabber.intakeGamePiece(), grabber)));
 
     driverOutakeButton.whileTrue(new RepeatCommand(new InstantCommand(() -> grabber.getRidOfGamePiece(), grabber)));
 

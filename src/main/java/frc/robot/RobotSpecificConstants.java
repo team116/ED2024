@@ -60,10 +60,10 @@ public final class RobotSpecificConstants {
     private static final class TestRobot implements SpecificConstants {
         public double getFrontToBackAxleToAxleInches() { return 27.25; }
         public double getSideToSideTreadCenterToTreadCenterInches() { return 27.25; }
-        public double getAngleOffsetDegreesMod0() { return 110.302734375; }
+        public double getAngleOffsetDegreesMod0() { return 62.75390625; }
         public double getAngleOffsetDegreesMod1() { return 173.49609375; }
-        public double getAngleOffsetDegreesMod2() { return 62.75390625; }
-        public double getAngleOffsetDegreesMod3() { return 21.533203125; }
+        public double getAngleOffsetDegreesMod2() { return 21.533203125; }
+        public double getAngleOffsetDegreesMod3() { return 290.302734375; }
     }
 
     private static final SpecificConstants ROBOT_SPECIFIC_CONSTANTS = IS_COMPETITION_ROBOT ? new CompetitionRobot() : new TestRobot();
