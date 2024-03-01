@@ -42,10 +42,10 @@ public class Swerve extends SubsystemBase {
     } else {
       mSwerveMods =
           new SwerveModule[] {
-            new SwerveModule(1, Constants.Swerve.MOD_1.CONSTANTS), // LF
-            new SwerveModule(0, Constants.Swerve.MOD_0.CONSTANTS), // RF
-            new SwerveModule(3, Constants.Swerve.MOD_3.CONSTANTS), // LR
-            new SwerveModule(2, Constants.Swerve.MOD_2.CONSTANTS)  // RR
+            new SwerveModule(0, Constants.Swerve.MOD_1.CONSTANTS), // LF
+            new SwerveModule(1, Constants.Swerve.MOD_0.CONSTANTS), // RF
+            new SwerveModule(2, Constants.Swerve.MOD_3.CONSTANTS), // LR
+            new SwerveModule(3, Constants.Swerve.MOD_2.CONSTANTS)  // RR
           };
     }
 

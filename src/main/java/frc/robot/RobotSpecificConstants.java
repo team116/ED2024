@@ -63,7 +63,7 @@ public final class RobotSpecificConstants {
         public double getAngleOffsetDegreesMod0() { return 62.75390625; } //Mod0 had issues at the time, and as such I didn't find an appropriate encoder offset
         public double getAngleOffsetDegreesMod1() { return 173.49609375; }
         public double getAngleOffsetDegreesMod2() { return 21.533203125; }
-        public double getAngleOffsetDegreesMod3() { return 110.302734375; }
+        public double getAngleOffsetDegreesMod3() { return 290.302734375; }
         // public double getAngleOffsetDegreesMod0() { return 110.302734375; } //Mod0 had issues at the time, and as such I didn't find an appropriate encoder offset
         // public double getAngleOffsetDegreesMod1() { return 173.49609375; }
         // public double getAngleOffsetDegreesMod2() { return 62.75390625; }
