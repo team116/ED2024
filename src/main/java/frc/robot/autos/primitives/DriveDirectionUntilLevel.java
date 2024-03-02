@@ -5,16 +5,16 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.ParallelDeadlineGroup;
 import frc.robot.autos.primitives.DriveDistanceAtAngle.Direction;
 import frc.robot.autos.primitives.DriveDistanceAtAngle.Speed;
-import frc.robot.subsystems.Swerve;
+import frc.robot.subsystems.SwerveSubsystem;
 
 public class DriveDirectionUntilLevel extends ParallelDeadlineGroup {
 
     private static class GyroLevelDeadline extends Command {
         private int stabilizedCount;
         private double startTime;
-        private final Swerve swerveDriveSubsystem;
+        private final SwerveSubsystem swerveDriveSubsystem;
 
-        public GyroLevelDeadline(Swerve swerveDriveSubsystem) {
+        public GyroLevelDeadline(SwerveSubsystem swerveDriveSubsystem) {
             this.swerveDriveSubsystem = swerveDriveSubsystem;
         }
 
@@ -44,7 +44,7 @@ public class DriveDirectionUntilLevel extends ParallelDeadlineGroup {
         
     }
 
-    public DriveDirectionUntilLevel(Swerve swerveSubsystem, Direction direction) {
+    public DriveDirectionUntilLevel(SwerveSubsystem swerveSubsystem, Direction direction) {
         super(
             new GyroLevelDeadline(swerveSubsystem),
             new DriveDistanceAtAngle(swerveSubsystem, 40.0, direction, Speed.FAST)

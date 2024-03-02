@@ -4,17 +4,17 @@ import com.ctre.phoenix.sensors.Pigeon2;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
-import frc.robot.subsystems.Swerve;
+import frc.robot.subsystems.SwerveSubsystem;
 
 public class RotateInPlaceByGyroInDegrees extends SequentialCommandGroup {
-    private Swerve swerve;
+    private SwerveSubsystem swerve;
     private Pigeon2 gyro;
     private double desiredAngleDegrees;
     private double maxPercentPower;
     private static final double DEGREES_AWAY_FROM_DESIRED_THRESHOLD = 0.25;
     private static final double MIN_PERCENT_POWER = 0.05;  // NOTE: This needs to be enough to continue to turn...
 
-    public RotateInPlaceByGyroInDegrees(Swerve swerveSubsystem, double desiredAngleDegrees, double maxPercentPower) {
+    public RotateInPlaceByGyroInDegrees(SwerveSubsystem swerveSubsystem, double desiredAngleDegrees, double maxPercentPower) {
         this(swerveSubsystem, swerveSubsystem.getGyro(), desiredAngleDegrees, maxPercentPower);
     }
 
@@ -25,7 +25,7 @@ public class RotateInPlaceByGyroInDegrees extends SequentialCommandGroup {
      * @param desiredAngleDegrees positive angle degrees are clockwise and negative are counter clockwise
      * @param maxPercentPower
      */
-    public RotateInPlaceByGyroInDegrees(Swerve swerveSubsystem, Pigeon2 gyro, double desiredAngleDegrees, double maxPercentPower) {
+    public RotateInPlaceByGyroInDegrees(SwerveSubsystem swerveSubsystem, Pigeon2 gyro, double desiredAngleDegrees, double maxPercentPower) {
         this.gyro = gyro;
         this.desiredAngleDegrees = desiredAngleDegrees;
         this.maxPercentPower = maxPercentPower;
@@ -37,11 +37,11 @@ public class RotateInPlaceByGyroInDegrees extends SequentialCommandGroup {
         addCommands(turnWheelsForRotation, driveUntilReachAngle);
     }
 
-    public RotateInPlaceByGyroInDegrees(Swerve swerveSubsystem, double desiredAngleDegrees, RotationDirection rotationDirection, double maxPercentPower) {
+    public RotateInPlaceByGyroInDegrees(SwerveSubsystem swerveSubsystem, double desiredAngleDegrees, RotationDirection rotationDirection, double maxPercentPower) {
         this(swerveSubsystem, desiredAngleDegrees * rotationDirection.getDirectionModifier(), maxPercentPower);
     }
 
-    public RotateInPlaceByGyroInDegrees(Swerve swerveSubsystem, double desiredAngleDegrees, RotationDirection rotationDirection) {
+    public RotateInPlaceByGyroInDegrees(SwerveSubsystem swerveSubsystem, double desiredAngleDegrees, RotationDirection rotationDirection) {
         this(swerveSubsystem, desiredAngleDegrees * rotationDirection.getDirectionModifier(), 0.3);
     }
 

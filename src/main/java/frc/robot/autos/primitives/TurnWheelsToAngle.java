@@ -2,14 +2,14 @@ package frc.robot.autos.primitives;
 
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.kinematics.SwerveModulePosition;
-import frc.robot.subsystems.Swerve;
+import frc.robot.subsystems.SwerveSubsystem;
 
 public class TurnWheelsToAngle extends DurationCommand {
 
     private static final double MAX_SECONDS_TO_TURN_WHEELS = 0.5;
     private static final double DEGRESS_AWAY_FROM_DESIRED_THRESHOLD = 0.1;
 
-    private Swerve swerve;
+    private SwerveSubsystem swerve;
     private Rotation2d desiredAngle;
 
     /**
@@ -18,7 +18,7 @@ public class TurnWheelsToAngle extends DurationCommand {
      * @param swerveSubsystem the swerve subsystem
      * @param angleDegrees the direction to move
      */
-    public TurnWheelsToAngle(Swerve swerveSubsystem, double angleDegrees) {
+    public TurnWheelsToAngle(SwerveSubsystem swerveSubsystem, double angleDegrees) {
         super(MAX_SECONDS_TO_TURN_WHEELS);
         this.swerve = swerveSubsystem;
         this.desiredAngle = Rotation2d.fromDegrees(angleDegrees);

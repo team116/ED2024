@@ -2,7 +2,7 @@ package frc.robot.autos.primitives;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.RobotSpecificConstants;
-import frc.robot.subsystems.Swerve;
+import frc.robot.subsystems.SwerveSubsystem;
 
 
 public class RotateInPlaceByEncoders extends SequentialCommandGroup {
@@ -22,14 +22,14 @@ public class RotateInPlaceByEncoders extends SequentialCommandGroup {
      * @param angleDegrees positive angle to turn CLOCKWISE "right", negative to turn COUNTER_CLOCKWISE "left"
      * @param direction
      */
-    public RotateInPlaceByEncoders(Swerve swerveSubsystem, double angleDegrees) {
+    public RotateInPlaceByEncoders(SwerveSubsystem swerveSubsystem, double angleDegrees) {
         TurnWheelsForRotation turnWheelsForRotation = new TurnWheelsForRotation(swerveSubsystem);
         DriveDistance driveDistance = new DriveDistance(swerveSubsystem,  -((angleDegrees / 360.0) * ROTATION_CIRCUMFERENCE_INCHES), DriveDistance.SLOW_PID_SLOT);
 
         addCommands(turnWheelsForRotation, driveDistance);
     }
 
-    public RotateInPlaceByEncoders(Swerve swerveSubsystem, double angleDegrees, RotationDirection rotationDirection) {
+    public RotateInPlaceByEncoders(SwerveSubsystem swerveSubsystem, double angleDegrees, RotationDirection rotationDirection) {
         this(swerveSubsystem, angleDegrees * rotationDirection.getDirectionModifier());
     }
 }

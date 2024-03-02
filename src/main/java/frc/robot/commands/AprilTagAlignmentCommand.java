@@ -5,16 +5,16 @@ import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.Limelight;
-import frc.robot.subsystems.Swerve;
+import frc.robot.subsystems.SwerveSubsystem;
 
 public class AprilTagAlignmentCommand extends Command {
-    private Swerve swerve;
+    private SwerveSubsystem swerve;
     private Limelight limelight;
     private int stabilizedCount;
     private double startTime;
     private double desiredDistanceFromAprilTagInches = 60;
 
-    public AprilTagAlignmentCommand(Swerve swerveSubstem, Limelight limelightSubsystem) {
+    public AprilTagAlignmentCommand(SwerveSubsystem swerveSubstem, Limelight limelightSubsystem) {
         this.swerve = swerveSubstem;
         this.limelight = limelightSubsystem;
         addRequirements(swerveSubstem, limelightSubsystem);

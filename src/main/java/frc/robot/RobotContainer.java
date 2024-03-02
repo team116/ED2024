@@ -5,6 +5,9 @@
 package frc.robot;
 
 import com.ctre.phoenix.sensors.Pigeon2;
+import com.pathplanner.lib.auto.AutoBuilder;
+import com.pathplanner.lib.auto.NamedCommands;
+import com.pathplanner.lib.commands.PathPlannerAuto;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
@@ -20,6 +23,7 @@ import edu.wpi.first.wpilibj2.command.button.Trigger;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import frc.robot.autos.*;
 import frc.robot.autos.primitives.DriveDirectionUntilLevel;
+import frc.robot.autos.primitives.GrabberIntakeCommand;
 import frc.robot.autos.primitives.DriveDistanceAtAngle.Direction;
 import frc.robot.commands.*;
 import frc.robot.subsystems.*;
@@ -82,12 +86,12 @@ public class RobotContainer {
    /* Subsystems */
   private final Arm arm = new Arm();
   private final Limelight limelight = new Limelight();
-  private final Swerve s_Swerve = new Swerve();
+  private final SwerveSubsystem s_Swerve = new SwerveSubsystem();
   private final Grabber grabber = new Grabber();
   private final Leds leds = new Leds();
   private final Pigeon2 gyro = s_Swerve.getGyro();
 
-  private final SendableChooser<Command> sendableChooser = new SendableChooser<>();
+  private final SendableChooser<Command> sendableChooser;
 
   private final ToggleStateBooleanSupplier robotCentricState = new ToggleStateBooleanSupplier();
 
@@ -105,6 +109,8 @@ public class RobotContainer {
 
     // arm.setDefaultCommand(new DefaultArmCommand(arm, gunnerLogitech, gunnerStation));
 
+    NamedCommands.registerCommand("First Command", new InstantCommand(() -> SmartDashboard.putString("The Event Marker has been pressed", "It has been pressed")));
+
     grabber.setDefaultCommand(new GrabberCommand(grabber));
 
     leds.setDefaultCommand(new DefaultLedCommand(leds, gunnerLogitech, gunnerStation));
@@ -112,7 +118,12 @@ public class RobotContainer {
     // Configure the button bindings
     configureButtonBindings();
 
-    sendableChooser.setDefaultOption("Do Nothing", new DoNothingCommand());
+
+
+    sendableChooser = AutoBuilder.buildAutoChooser();
+    
+
+    
     // sendableChooser.addOption("Charge Station Balance By Gyro", new ChargeStationBalanceByGyro(s_Swerve, arm, grabber, limelight));
     // sendableChooser.addOption("Double Score Blue Bump", new DoubleScoreBlueBump(s_Swerve, arm, grabber, limelight));
     // sendableChooser.addOption("Double Score Blue Easy", new DoubleScoreBlueEasy(s_Swerve, arm, grabber, limelight));
@@ -130,7 +141,7 @@ public class RobotContainer {
     // sendableChooser.addOption("Scores high cone then gets a second peice and scores in ground goal", new PickUpSecondPieceAfterHighConeAndScoreInGroundGoal(s_Swerve, arm, grabber, limelight, gyro));
     // sendableChooser.addOption("Rotate 180 by encoders", new TestRotationByEncoders(s_Swerve, gyro));
     // sendableChooser.addOption("Rotate 180 by gyro", new TestRotationByGyro(s_Swerve, gyro));
-    SmartDashboard.putData(sendableChooser);
+    SmartDashboard.putData("Auto Mode", sendableChooser);
   }
 
   /**

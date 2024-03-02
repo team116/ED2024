@@ -2,7 +2,7 @@ package frc.robot.autos.primitives;
 
 import edu.wpi.first.math.kinematics.SwerveModulePosition;
 import edu.wpi.first.math.util.Units;
-import frc.robot.subsystems.Swerve;
+import frc.robot.subsystems.SwerveSubsystem;
 
 public class DriveDistance extends DurationCommand {
     public static final int NORMAL_PID_SLOT = 1;
@@ -11,7 +11,7 @@ public class DriveDistance extends DurationCommand {
     private static final double WORST_CASE_INCHES_PER_SECOND = 8.0;
     private static final double METERS_AWAY_FROM_DESIRED_THRESHOLD = 0.05;
 
-    private final Swerve swerve;
+    private final SwerveSubsystem swerve;
     private final double distance;
     private final int pidSlot;
 
@@ -22,7 +22,7 @@ public class DriveDistance extends DurationCommand {
      * @param distanceInches positive and negative distance in inches
      * @param angleDegrees the direction to move
      */
-    public DriveDistance(Swerve swerveSubsystem, double distanceInches) {
+    public DriveDistance(SwerveSubsystem swerveSubsystem, double distanceInches) {
         this(swerveSubsystem, distanceInches, NORMAL_PID_SLOT);
     }
 
@@ -32,7 +32,7 @@ public class DriveDistance extends DurationCommand {
      * @param distanceInches
      * @param pidSlot slot 1 is normal, 2 is fast, 3 is slow
      */
-    public DriveDistance(Swerve swerveSubsystem, double distanceInches, int pidSlot) {
+    public DriveDistance(SwerveSubsystem swerveSubsystem, double distanceInches, int pidSlot) {
         super(deriveMaxTimeoutFromDistance(distanceInches));
         this.swerve = swerveSubsystem;
         this.distance = Units.inchesToMeters(distanceInches);
