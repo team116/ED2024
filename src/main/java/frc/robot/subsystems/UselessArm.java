@@ -48,7 +48,7 @@ public class UselessArm extends SubsystemBase{
         armMotor = new CANSparkMax(Constants.ARM_MOTOR_ID, MotorType.kBrushless);
         // armMotor.setIdleMode(IdleMode.kBrake);
 
-        armCanCoder = new CANCoder(Constants.ARM_CAN_CODER_ID);
+        armCanCoder = new CANCoder(Constants.USELESS_ARM_CAN_CODER_ID);
         armCanCoder.configAbsoluteSensorRange(AbsoluteSensorRange.Signed_PlusMinus180);
 
         armEncoder = armMotor.getEncoder();

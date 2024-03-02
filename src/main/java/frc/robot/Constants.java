@@ -23,9 +23,10 @@ public final class Constants {
   public static final int SHOOTER_MOTOR_TOP_ID = 0;
   public static final int SHOOTER_MOTOR_BOTTOM_ID = 0;
   public static final int INTAKE_MOTOR_ID = 0;
-  public static final int ARMR_ROTATION_MOTOR_ID = 0;
+  public static final int ARM_ROTATION_MOTOR_ID = 0;
   public static final int GRABBER_MOTOR_ID = 52;
-  public static final int ARM_CAN_CODER_ID = 50;
+  public static final int USELESS_ARM_CAN_CODER_ID = 50;
+  public static final int ARM_ENCODER_ID = 0;
 
   public static final int GRABBER_LIMIT_SWITCH_CHANNEL = 0;
 

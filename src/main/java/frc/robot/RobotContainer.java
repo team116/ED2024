@@ -22,8 +22,6 @@ import edu.wpi.first.wpilibj2.command.button.POVButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import frc.robot.autos.*;
-import frc.robot.autos.primitives.DriveDirectionUntilLevel;
-import frc.robot.autos.primitives.GrabberIntakeCommand;
 import frc.robot.autos.primitives.DriveDistanceAtAngle.Direction;
 import frc.robot.commands.*;
 import frc.robot.subsystems.*;
