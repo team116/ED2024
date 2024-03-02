@@ -1,15 +1,15 @@
 package frc.robot.autos.primitives;
 
-import frc.robot.subsystems.Grabber;
+import frc.robot.subsystems.SemiUsefulGrabber;
 
 public class GrabberIntakeCommand extends DurationCommand {
 
     private static final double MAX_INTAKE_WAIT_SECONDS = 3.0;
 
     private int stabilizedCount;
-    private final Grabber grabber;
+    private final SemiUsefulGrabber grabber;
 
-    public GrabberIntakeCommand(Grabber grabber) {
+    public GrabberIntakeCommand(SemiUsefulGrabber grabber) {
         super(MAX_INTAKE_WAIT_SECONDS);
         this.grabber = grabber;
         addRequirements(grabber);

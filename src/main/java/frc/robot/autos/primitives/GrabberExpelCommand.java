@@ -1,14 +1,14 @@
 package frc.robot.autos.primitives;
 
-import frc.robot.subsystems.Grabber;
+import frc.robot.subsystems.SemiUsefulGrabber;
 
 public class GrabberExpelCommand extends DurationCommand {
 
     private static final double MAX_EXPEL_SECONDS = 1.0;
 
-    private final Grabber grabber;
+    private final SemiUsefulGrabber grabber;
 
-    public GrabberExpelCommand(Grabber grabber) {
+    public GrabberExpelCommand(SemiUsefulGrabber grabber) {
         super(MAX_EXPEL_SECONDS);
         this.grabber = grabber;
         addRequirements(grabber);

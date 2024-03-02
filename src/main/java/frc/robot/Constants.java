@@ -20,6 +20,10 @@ public final class Constants {
   public static final int DRIVER_XBOX_CONTROLLER_PORT = 0;
 
   public static final int ARM_MOTOR_ID = 51;
+  public static final int SHOOTER_MOTOR_TOP_ID = 0;
+  public static final int SHOOTER_MOTOR_BOTTOM_ID = 0;
+  public static final int INTAKE_MOTOR_ID = 0;
+  public static final int ARMR_ROTATION_MOTOR_ID = 0;
   public static final int GRABBER_MOTOR_ID = 52;
   public static final int ARM_CAN_CODER_ID = 50;
 

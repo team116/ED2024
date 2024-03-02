@@ -14,10 +14,10 @@ public class AprilTagAlignmentCommand extends Command {
     private double startTime;
     private double desiredDistanceFromAprilTagInches = 60;
 
-    public AprilTagAlignmentCommand(SwerveSubsystem swerveSubstem, Limelight limelightSubsystem) {
-        this.swerve = swerveSubstem;
+    public AprilTagAlignmentCommand(SwerveSubsystem swerveSubsystem, Limelight limelightSubsystem) {
+        this.swerve = swerveSubsystem;
         this.limelight = limelightSubsystem;
-        addRequirements(swerveSubstem, limelightSubsystem);
+        addRequirements(swerveSubsystem, limelightSubsystem);
     }
 
     @Override

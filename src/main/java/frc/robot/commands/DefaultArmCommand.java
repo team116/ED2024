@@ -2,13 +2,13 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.subsystems.Arm;
+import frc.robot.subsystems.UselessArm;
 
 public class DefaultArmCommand extends BaseArmCommand {
     private Joystick gunnerLogitech;
     private Joystick gunnerStation; // FIXME: Don't believe this ended up being necessary
 
-    public DefaultArmCommand(Arm armSubSystem, Joystick gunnerLogitech, Joystick gunnerStation) {
+    public DefaultArmCommand(UselessArm armSubSystem, Joystick gunnerLogitech, Joystick gunnerStation) {
         super(armSubSystem);
         this.gunnerLogitech = gunnerLogitech;
         this.gunnerStation = gunnerStation;
@@ -56,24 +56,24 @@ public class DefaultArmCommand extends BaseArmCommand {
     @Override
     protected void checkForMoveToPositionRequests() {
 
-        Arm.Position desiredArmPosition = null;
+        UselessArm.Position desiredArmPosition = null;
 
         if (gunnerLogitech.getRawButtonPressed(1)) {
-            desiredArmPosition = Arm.Position.STOWED;
+            desiredArmPosition = UselessArm.Position.STOWED;
         } else if (gunnerLogitech.getRawButtonPressed(2)) {
-            desiredArmPosition = Arm.Position.HUMAN_PLAYER_STATION;
+            desiredArmPosition = UselessArm.Position.HUMAN_PLAYER_STATION;
         } else if (gunnerLogitech.getRawButtonPressed(7)) {
-            desiredArmPosition = Arm.Position.CONE_HIGH_GOAL;
+            desiredArmPosition = UselessArm.Position.CONE_HIGH_GOAL;
         } else if (gunnerLogitech.getRawButtonPressed(8)) {
-            desiredArmPosition = Arm.Position.CUBE_HIGH_GOAL;
+            desiredArmPosition = UselessArm.Position.CUBE_HIGH_GOAL;
         } else if (gunnerLogitech.getRawButtonPressed(9)) {
-            desiredArmPosition = Arm.Position.CONE_MID_GOAL;
+            desiredArmPosition = UselessArm.Position.CONE_MID_GOAL;
         } else if (gunnerLogitech.getRawButtonPressed(10)) {
-            desiredArmPosition = Arm.Position.CUBE_MID_GOAL;
+            desiredArmPosition = UselessArm.Position.CUBE_MID_GOAL;
         } else if (gunnerLogitech.getRawButtonPressed(11)) {
-            desiredArmPosition = Arm.Position.LOW_GOAL;
+            desiredArmPosition = UselessArm.Position.LOW_GOAL;
         } else if (gunnerLogitech.getRawButtonPressed(12)) {
-            desiredArmPosition = Arm.Position.FLOOR_INTAKE;
+            desiredArmPosition = UselessArm.Position.FLOOR_INTAKE;
         }
 
         // Raw 1 - Trigger - Stowed in robot ()

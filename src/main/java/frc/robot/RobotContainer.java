@@ -84,11 +84,11 @@ public class RobotContainer {
   // private final POVButton dpadLeft = new POVButton(driver, 270);
 
    /* Subsystems */
-  private final Arm arm = new Arm();
+  private final UselessArm arm = new UselessArm();
   private final Limelight limelight = new Limelight();
   private final SwerveSubsystem s_Swerve = new SwerveSubsystem();
-  private final Grabber grabber = new Grabber();
-  private final Leds leds = new Leds();
+  private final SemiUsefulGrabber grabber = new SemiUsefulGrabber();
+  private final UselessLeds leds = new UselessLeds();
   private final Pigeon2 gyro = s_Swerve.getGyro();
 
   private final SendableChooser<Command> sendableChooser;
