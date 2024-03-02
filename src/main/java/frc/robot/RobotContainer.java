@@ -180,6 +180,21 @@ public class RobotContainer {
 
     robotCentric.onTrue(new InstantCommand(() -> robotCentricState.toggleState()));
     // XBox
+    /*
+
+    Controller:
+    Left stick = drive
+    Right stick left/right = turn left/right
+    Left trigger = Reset how the robot thinks the field is rotated relative to it
+    Right trigger = Slow driving mode toggle
+    Right bumper = Toggle field/robot centric driving
+    
+    Left bumper = Broken flip fowards/backwards
+    Dpad down = Broken super slow mode
+
+
+    //OLD:
+
     // Y for slow mode
     // Right trigger - inwards
     // Left trigger - outwards
@@ -207,6 +222,7 @@ public class RobotContainer {
     // Raw 5 - Disable all arm operations
 
     // Raw 7 - Cube/Color Switch  (RGB somewhere)
+    */
   }
 
   /**
