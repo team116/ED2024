@@ -186,11 +186,11 @@ public class RobotContainer {
     Left stick = drive
     Right stick left/right = turn left/right
     Left trigger = Reset how the robot thinks the field is rotated relative to it
-    Right trigger = Slow driving mode toggle
+    Right trigger = Toggle slow mode
     Right bumper = Toggle field/robot centric driving
+    Dpad down = Toggle super slow mode. WARNING: Super slow mode is by default ON.
     
     Left bumper = Broken flip fowards/backwards
-    Dpad down = Broken super slow mode
 
 
     //OLD:
