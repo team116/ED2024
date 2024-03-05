@@ -9,6 +9,7 @@ import com.pathplanner.lib.auto.AutoBuilder;
 import com.pathplanner.lib.auto.NamedCommands;
 import com.pathplanner.lib.commands.PathPlannerAuto;
 
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
@@ -93,8 +94,21 @@ public class RobotContainer {
 
   private final ToggleStateBooleanSupplier robotCentricState = new ToggleStateBooleanSupplier();
 
+  /** So I don't have to copy it repeatedly */
+  public static final String[] autoConstantNames = new String[]{"PX", "IX", "DX", "PY", "IY", "DY", "PTheta", "ITheta", "DTheta"};
+
+  public void updateAutoConstantValues() {
+    for (String i : autoConstantNames) s_Swerve.setAutoConstant(i, SmartDashboard.getNumber(i, s_Swerve.getAutoConstant(i)));
+  }
+
+  public void displayAutoConstantValuesInDashboard() { // TODO: Make a way to reconfigure auto
+    for (String i : autoConstantNames) SmartDashboard.putNumber("Actual" + i, s_Swerve.getAutoConstant(i));
+  }
+
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
+    DriverStation.silenceJoystickConnectionWarning(true);
+
     s_Swerve.setDefaultCommand(
         new TeleopSwerve(
             s_Swerve,
@@ -108,6 +122,8 @@ public class RobotContainer {
     // arm.setDefaultCommand(new DefaultArmCommand(arm, gunnerLogitech, gunnerStation));
 
     NamedCommands.registerCommand("First Command", new InstantCommand(() -> SmartDashboard.putString("The Event Marker has been pressed", "It has been pressed")));
+
+    for (String i : autoConstantNames) SmartDashboard.putNumber(i, s_Swerve.getAutoConstant(i));
 
     grabber.setDefaultCommand(new GrabberCommand(grabber));
 

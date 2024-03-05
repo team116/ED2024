@@ -12,7 +12,7 @@ public class ShooterAndArm extends SubsystemBase{
     private CANSparkMax shooterMotorTop;
     private CANSparkMax shooterMotorBottom;
     private CANSparkMax armRotationMotor;
-    private DutyCycleEncoder armEncoder; // TODO: Need to find out how to get this in code
+    private DutyCycleEncoder armEncoder; 
     private CANSparkMax intakeMotor;
     private SparkMaxLimitSwitch shooterLimitSwitch;
 

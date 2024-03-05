@@ -18,6 +18,7 @@ import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.smartdashboard.Field2d;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants.AutoConstants;
 import frc.robot.Constants.Swerve;;
 
 public class SwerveSubsystem extends SubsystemBase {
@@ -29,7 +30,7 @@ public class SwerveSubsystem extends SubsystemBase {
   private Field2d field;
 
   private boolean inSlowMode = false;
-  private boolean superSlowMode = true;
+  private boolean superSlowMode = false;
 
   public SwerveSubsystem() {
     gyro = new Pigeon2(Swerve.PIGEON_ID);
@@ -52,8 +53,8 @@ public class SwerveSubsystem extends SubsystemBase {
                 this::getChassisSpeeds, 
                 this::driveAuto, 
                 new HolonomicPathFollowerConfig(
-                  new PIDConstants(Swerve.DRIVE_KP, Swerve.DRIVE_KI, Swerve.DRIVE_KD), 
-                  new PIDConstants(Swerve.ANGLE_KP, Swerve.ANGLE_KI, Swerve.ANGLE_KD),
+                  new PIDConstants(AutoConstants.PX_CONTROLLER, AutoConstants.IX_CONTROLLER, AutoConstants.DX_CONTROLLER), 
+                  new PIDConstants(AutoConstants.P_THETA_CONTROLLER, AutoConstants.I_THETA_CONTROLLER, AutoConstants.D_THETA_CONTROLLER),
                   2.0, // Original value 4.6
                   0.4318, 
                   new ReplanningConfig()
@@ -69,6 +70,101 @@ public class SwerveSubsystem extends SubsystemBase {
 
     field = new Field2d();
     // SmartDashboard.putData("Field", field);
+  }
+
+  public void setAutoConstant(String name, double value) {
+    switch (name) {
+      case "PX":
+        setAutoPX(value);
+        return;
+      case "IX":
+        setAutoIX(value);
+        return;
+      case "DX":
+        setAutoDX(value);
+        return;
+      case "PY":
+        setAutoPY(value);
+        return;
+      case "IY":
+        setAutoIY(value);
+        return;
+      case "DY":
+        setAutoDY(value);
+        return;
+      case "PTheta":
+        setAutoPTheta(value);
+        return;
+      case "ITheta":
+        setAutoITheta(value);
+        return;
+      case "DTheta":
+        setAutoDTheta(value);
+        return;
+      default:
+        throw new IllegalArgumentException("Not one of the constants");
+    }
+  }
+
+  public double getAutoConstant(String name) {
+    switch (name) {
+      case "PX":
+        return AutoConstants.PX_CONTROLLER;
+      case "IX":
+        return AutoConstants.IX_CONTROLLER;
+      case "DX":
+        return AutoConstants.DX_CONTROLLER;
+      case "PY":
+        return AutoConstants.PY_CONTROLLER;
+      case "IY":
+        return AutoConstants.IY_CONTROLLER;
+      case "DY":
+        return AutoConstants.DY_CONTROLLER;
+      case "PTheta":
+        return AutoConstants.P_THETA_CONTROLLER;
+      case "ITheta":
+        return AutoConstants.I_THETA_CONTROLLER;
+      case "DTheta":
+        return AutoConstants.D_THETA_CONTROLLER;
+      default:
+        throw new IllegalArgumentException("Not one of the constants");
+    }
+  }
+
+  public void setAutoPX(double value) {
+    AutoConstants.PX_CONTROLLER = value;
+  }
+
+  public void setAutoIX(double value) {
+    AutoConstants.IX_CONTROLLER = value;
+  }
+
+  public void setAutoDX(double value) {
+    AutoConstants.DX_CONTROLLER = value;
+  }
+
+  public void setAutoPY(double value) {
+    AutoConstants.PY_CONTROLLER = value;
+  }
+
+  public void setAutoIY(double value) {
+    AutoConstants.IY_CONTROLLER = value;
+  }
+
+  public void setAutoDY(double value) {
+    AutoConstants.DY_CONTROLLER = value;
+  }
+
+  public void setAutoPTheta(double value) {
+    AutoConstants.P_THETA_CONTROLLER = value;
+  }
+
+  public void setAutoITheta(double value) {
+    AutoConstants.I_THETA_CONTROLLER = value;
+  }
+
+  public void setAutoDTheta(double value) {
+    AutoConstants.D_THETA_CONTROLLER = value;
   }
 
   public void resetRelativeEncoders() {
