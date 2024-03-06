@@ -65,6 +65,8 @@ public class Robot extends TimedRobot {
 
     m_robotContainer.updateAutoConstantValues();
 
+    // m_robotContainer.reconfigureAutoBuilder();
+
     m_autonomousCommand = m_robotContainer.getAutonomousCommand();
 
     // schedule the autonomous command (example)

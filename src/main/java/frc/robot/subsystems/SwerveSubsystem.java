@@ -55,7 +55,7 @@ public class SwerveSubsystem extends SubsystemBase {
                 new HolonomicPathFollowerConfig(
                   new PIDConstants(AutoConstants.PX_CONTROLLER, AutoConstants.IX_CONTROLLER, AutoConstants.DX_CONTROLLER), 
                   new PIDConstants(AutoConstants.P_THETA_CONTROLLER, AutoConstants.I_THETA_CONTROLLER, AutoConstants.D_THETA_CONTROLLER),
-                  2.0, // Original value 4.6
+                  3.5, // Original value 4.6
                   0.4318, 
                   new ReplanningConfig()
                   ), 
@@ -70,6 +70,29 @@ public class SwerveSubsystem extends SubsystemBase {
 
     field = new Field2d();
     // SmartDashboard.putData("Field", field);
+  }
+
+  public void reconfigureAutoBuilder() {
+    AutoBuilder.configureHolonomic(
+                this::getPose, 
+                this::resetOdometry, 
+                this::getChassisSpeeds, 
+                this::driveAuto, 
+                new HolonomicPathFollowerConfig(
+                  new PIDConstants(AutoConstants.PX_CONTROLLER, AutoConstants.IX_CONTROLLER, AutoConstants.DX_CONTROLLER), 
+                  new PIDConstants(AutoConstants.P_THETA_CONTROLLER, AutoConstants.I_THETA_CONTROLLER, AutoConstants.D_THETA_CONTROLLER),
+                  2.0, // Original value 4.6
+                  0.4318, 
+                  new ReplanningConfig()
+                  ), 
+                  () -> {
+                    var alliance = DriverStation.getAlliance();
+                    if (alliance.isPresent()) {
+                      return alliance.get() == DriverStation.Alliance.Red;
+                    }
+                    return false;
+                  }, 
+                  this);
   }
 
   public void setAutoConstant(String name, double value) {

@@ -155,10 +155,12 @@ public final class Constants {
     public static  double PX_CONTROLLER = 1.0;
     public static  double IX_CONTROLLER = 0.0;
     public static  double DX_CONTROLLER = 0.0;
-    public static  double PY_CONTROLLER = 1.0;
+
+    public static  double PY_CONTROLLER = 0.0;
     public static  double IY_CONTROLLER = 0.0;
     public static  double DY_CONTROLLER = 0.0;
-    public static  double P_THETA_CONTROLLER = 1.0;
+    
+    public static  double P_THETA_CONTROLLER = 0.0;
     public static  double I_THETA_CONTROLLER = 0.0;
     public static  double D_THETA_CONTROLLER = 0.0;
 

@@ -258,6 +258,10 @@ public class RobotContainer {
     return shape(start);
   }
 
+  public void reconfigureAutoBuilder() {
+    s_Swerve.reconfigureAutoBuilder();
+  }
+
   public void resetRobotToCorrectAutonomousFieldPosition() {
     s_Swerve.zeroGyro();
   }
