@@ -136,6 +136,7 @@ public class RobotContainer {
 
     sendableChooser = AutoBuilder.buildAutoChooser();
     sendableChooser.addOption("Do Nothing", new DoNothingCommand());
+    sendableChooser.addOption("Drive Backwards 7 feet", new DriveBackwards(s_Swerve));
     
     // sendableChooser.addOption("Charge Station Balance By Gyro", new ChargeStationBalanceByGyro(s_Swerve, arm, grabber, limelight));
     // sendableChooser.addOption("Double Score Blue Bump", new DoubleScoreBlueBump(s_Swerve, arm, grabber, limelight));

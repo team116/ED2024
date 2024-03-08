@@ -44,7 +44,7 @@ public class DriveDistance extends DurationCommand {
     public void initialize() {
         super.initialize();
         swerve.resetDriveEncoders();
-        swerve.runToPosition(distance, pidSlot);
+        swerve.runToPositionInMeters(distance, pidSlot);
     }
 
     @Override

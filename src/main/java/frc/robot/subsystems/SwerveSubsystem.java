@@ -286,12 +286,17 @@ public class SwerveSubsystem extends SubsystemBase {
     }
   }
 
-  public void runToPosition(double position, int pidSlot){
+  public void runToPositionInMeters(double position, int pidSlot){
     for (SwerveModule mod : mSwerveMods) {
-      mod.goToPosition(position, pidSlot);
+      mod.goToPositionMeters(position, pidSlot);
     }
   }
 
+  // public void runToPositionInInches(double position, int pidSlot) {
+  //   for (SwerveModule mod: mSwerveMods) {
+  //     mod.goToPositionInches(position, pidSlot);
+  //   }
+  // }
 
   public void turnWheelsToAngles(Rotation2d[] angles) {
     mSwerveMods[0].setAngle(angles[0]);

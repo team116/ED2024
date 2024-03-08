@@ -221,11 +221,16 @@ public class SwerveModule {
     driveMotor.set(percent);
   }
 
-  public void goToPosition(double desiredPosition, int pidSlot) {
+  public void goToPositionMeters(double desiredPositionMeters, int pidSlot) {
     driveController.setReference(
-      desiredPosition, // in to meters is / 39.37
+      desiredPositionMeters, // in to meters is / 39.37
       ControlType.kPosition, pidSlot);  // NOTE: Have 0..3 pid controller positions if we choose to use them
+      // in to meters is / 39.37
   }
+
+  // public void goToPositionInches(double desiredPositionInches, int pidSlot) {
+  //   driveController.setReference(desiredPositionInches / 39.37, ControlType.kPosition, pidSlot);
+  // }
 
   public void setP(double p, int pidSlot){
     driveController.setP(p, pidSlot);
