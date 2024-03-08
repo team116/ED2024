@@ -1,7 +1,7 @@
 package frc.robot.subsystems;
 
 import com.revrobotics.CANSparkMax;
-import com.revrobotics.SparkMaxLimitSwitch;
+import com.revrobotics.SparkLimitSwitch;
 import com.revrobotics.CANSparkLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.DutyCycleEncoder;
@@ -14,7 +14,7 @@ public class ShooterAndArm extends SubsystemBase{
     private CANSparkMax armRotationMotor;
     private DutyCycleEncoder armEncoder; 
     private CANSparkMax intakeMotor;
-    private SparkMaxLimitSwitch shooterLimitSwitch;
+    private SparkLimitSwitch shooterLimitSwitch;
 
     public ShooterAndArm() {
         shooterMotorTop = new CANSparkMax(Constants.SHOOTER_MOTOR_TOP_ID, MotorType.kBrushless);
