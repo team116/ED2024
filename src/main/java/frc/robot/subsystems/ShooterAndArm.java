@@ -9,18 +9,18 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 public class ShooterAndArm extends SubsystemBase{
-    private CANSparkMax shooterMotorTop;
-    private CANSparkMax shooterMotorBottom;
+    private CANSparkMax shooterMotor1;  // TODO: Might be "closer"/"further", find out when installed
+    private CANSparkMax shooterMotor2;
     private CANSparkMax armRotationMotor;
     private DutyCycleEncoder armEncoder; 
     private CANSparkMax intakeMotor;
     private SparkLimitSwitch shooterLimitSwitch;
 
     public ShooterAndArm() {
-        shooterMotorTop = new CANSparkMax(Constants.SHOOTER_MOTOR_TOP_ID, MotorType.kBrushless);
-        shooterMotorBottom = new CANSparkMax(Constants.SHOOTER_MOTOR_BOTTOM_ID, MotorType.kBrushless);
+        shooterMotor1 = new CANSparkMax(Constants.SHOOTER_MOTOR_1_ID, MotorType.kBrushless);
+        shooterMotor2 = new CANSparkMax(Constants.SHOOTER_MOTOR_2_ID, MotorType.kBrushless);
         armRotationMotor = new CANSparkMax(Constants.ARM_ROTATION_MOTOR_ID, MotorType.kBrushless);
         intakeMotor = new CANSparkMax(Constants.INTAKE_MOTOR_ID, MotorType.kBrushless);
-        armEncoder = new DutyCycleEncoder(Constants.ARM_ROTATION_MOTOR_ID);
+        armEncoder = new DutyCycleEncoder(Constants.ARM_ENCODER_CHANNEL);
     }
 }

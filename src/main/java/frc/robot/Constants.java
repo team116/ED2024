@@ -20,13 +20,16 @@ public final class Constants {
   public static final int DRIVER_XBOX_CONTROLLER_PORT = 0;
 
   public static final int ARM_MOTOR_ID = 51;
-  public static final int SHOOTER_MOTOR_TOP_ID = 0; // TODO: need to find an actual ID for this
-  public static final int SHOOTER_MOTOR_BOTTOM_ID = 0; // TODO: need to find an actual ID for this
-  public static final int INTAKE_MOTOR_ID = 0; // TODO: need to find an actual ID for this
-  public static final int ARM_ROTATION_MOTOR_ID = 0; // TODO: need to find an actual ID for this
+  public static final int SHOOTER_MOTOR_1_ID = 57;
+  public static final int SHOOTER_MOTOR_2_ID = 58;
+  public static final int INTAKE_MOTOR_ID = 55;
+  public static final int ARM_ROTATION_MOTOR_ID = 56;
   public static final int GRABBER_MOTOR_ID = 52;
   public static final int USELESS_ARM_CAN_CODER_ID = 50;
-  public static final int ARM_ENCODER_ID = 0; // TODO: need to find an actual ID for this
+  public static final int ARM_ENCODER_CHANNEL = 9; // TODO: need to find an actual ID for this
+
+  public static final int CLIMBER_LEFT_ID = 61;
+  public static final int CLIMBER_RIGHT_ID = 62;
 
   public static final int GRABBER_LIMIT_SWITCH_CHANNEL = 0; // TODO: need to find an actual ID for this
 
