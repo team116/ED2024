@@ -4,6 +4,7 @@ import com.ctre.phoenix.sensors.CANCoder;
 import com.ctre.phoenix.sensors.CANCoderStatusFrame;
 
 /** Sets status frames for the CTRE CANCoder. */
+@SuppressWarnings(value = { "removal" })
 public class CANCoderUtil {
   public enum CCUsage {
     kAll,
