@@ -1,7 +1,7 @@
 package frc.robot.autos.primitives;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
-import frc.robot.subsystems.Swerve;
+import frc.robot.subsystems.SwerveSubsystem;
 
 public class DriveDistanceAtAngle extends SequentialCommandGroup {
 
@@ -62,7 +62,7 @@ public class DriveDistanceAtAngle extends SequentialCommandGroup {
      * @param distanceInches a positive value for the distance to drive
      * @param direction the directioon to move
      */
-    public DriveDistanceAtAngle(Swerve swerveSubsystem, double distanceInches, Direction direction) {
+    public DriveDistanceAtAngle(SwerveSubsystem swerveSubsystem, double distanceInches, Direction direction) {
         this(swerveSubsystem, distanceInches * direction.directionMultiplier, direction.angleDegrees, Speed.NORMAL);
     }
 
@@ -73,7 +73,7 @@ public class DriveDistanceAtAngle extends SequentialCommandGroup {
      * @param distanceInches a positive value for the distance to drive
      * @param direction the directioon to move
      */
-    public DriveDistanceAtAngle(Swerve swerveSubsystem, double distanceInches, Direction direction, Speed speed) {
+    public DriveDistanceAtAngle(SwerveSubsystem swerveSubsystem, double distanceInches, Direction direction, Speed speed) {
         this(swerveSubsystem, distanceInches * direction.directionMultiplier, direction.angleDegrees, speed);
     }
 
@@ -84,7 +84,7 @@ public class DriveDistanceAtAngle extends SequentialCommandGroup {
      * @param distanceInches positive and negative distance in inches
      * @param angleDegrees the direction to move
      */
-    public DriveDistanceAtAngle(Swerve swerveSubsystem, double distanceInches, double angleDegrees, Speed speed) {
+    public DriveDistanceAtAngle(SwerveSubsystem swerveSubsystem, double distanceInches, double angleDegrees, Speed speed) {
         TurnWheelsToAngle turnWheelsToAngle = new TurnWheelsToAngle(swerveSubsystem, angleDegrees);
         DriveDistance driveDistance = new DriveDistance(swerveSubsystem, distanceInches, speed.driveDistancePidSlot);
 

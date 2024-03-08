@@ -20,10 +20,15 @@ public final class Constants {
   public static final int DRIVER_XBOX_CONTROLLER_PORT = 0;
 
   public static final int ARM_MOTOR_ID = 51;
+  public static final int SHOOTER_MOTOR_TOP_ID = 0; // TODO: need to find an actual ID for this
+  public static final int SHOOTER_MOTOR_BOTTOM_ID = 0; // TODO: need to find an actual ID for this
+  public static final int INTAKE_MOTOR_ID = 0; // TODO: need to find an actual ID for this
+  public static final int ARM_ROTATION_MOTOR_ID = 0; // TODO: need to find an actual ID for this
   public static final int GRABBER_MOTOR_ID = 52;
-  public static final int ARM_CAN_CODER_ID = 50;
+  public static final int USELESS_ARM_CAN_CODER_ID = 50;
+  public static final int ARM_ENCODER_ID = 0; // TODO: need to find an actual ID for this
 
-  public static final int GRABBER_LIMIT_SWITCH_CHANNEL = 0;
+  public static final int GRABBER_LIMIT_SWITCH_CHANNEL = 0; // TODO: need to find an actual ID for this
 
   public static final class Swerve {
     public static final double STICK_DEADBAND = 0.06; // Was 0.1
@@ -147,9 +152,17 @@ public final class Constants {
     public static final double MAX_ANGULAR_SPEED_RADIANS_PER_SECOND = Math.PI;
     public static final double MAX_ANGULAR_SPEED_RADIANS_PER_SECOND_SQUARED = Math.PI;
 
-    public static final double PX_CONTROLLER = 1;
-    public static final double PY_CONTROLLER = 1;
-    public static final double PTHETA_CONTROLLER = 1;
+    public static  double PX_CONTROLLER = 1.0;
+    public static  double IX_CONTROLLER = 0.0;
+    public static  double DX_CONTROLLER = 0.0;
+
+    public static  double PY_CONTROLLER = 0.0;
+    public static  double IY_CONTROLLER = 0.0;
+    public static  double DY_CONTROLLER = 0.0;
+    
+    public static  double P_THETA_CONTROLLER = 0.0;
+    public static  double I_THETA_CONTROLLER = 0.0;
+    public static  double D_THETA_CONTROLLER = 0.0;
 
     // Constraint for the motion profilied robot angle controller
     public static final TrapezoidProfile.Constraints THETA_CONTROLLER_CONSTRAINTS =

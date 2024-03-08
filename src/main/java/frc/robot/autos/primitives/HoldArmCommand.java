@@ -1,13 +1,13 @@
 package frc.robot.autos.primitives;
 
 import frc.robot.commands.BaseArmCommand;
-import frc.robot.subsystems.Arm;
+import frc.robot.subsystems.UselessArm;
 
 public class HoldArmCommand extends BaseArmCommand {
     private boolean disabled;
     private boolean finished;
 
-    public HoldArmCommand(Arm armSubSystem) {
+    public HoldArmCommand(UselessArm armSubSystem) {
         super(armSubSystem, false);
     }
 

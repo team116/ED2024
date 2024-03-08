@@ -2,19 +2,19 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
-import frc.robot.subsystems.Arm;
+import frc.robot.subsystems.UselessArm;
 
 public abstract class BaseArmCommand extends Command{
-    protected Arm arm;
+    protected UselessArm arm;
     protected double desiredCanCoderPosition;
     protected boolean moveToDesiredPosition = false;
     protected boolean manualMovementEngaged = false;
 
-    public BaseArmCommand(Arm armSubSystem) {
+    public BaseArmCommand(UselessArm armSubSystem) {
         this(armSubSystem, true);
     }
 
-    public BaseArmCommand(Arm armSubSystem, boolean addArmAsRequirement) {
+    public BaseArmCommand(UselessArm armSubSystem, boolean addArmAsRequirement) {
         this.arm = armSubSystem;
 
         desiredCanCoderPosition = arm.getCANCoderPosition();
@@ -37,8 +37,8 @@ public abstract class BaseArmCommand extends Command{
     public void execute(){
         // Use this default command to keep the arm at the desired position
         
-        SmartDashboard.putNumber("Arm Motor Encoder", arm.getEncoder());
-        SmartDashboard.putNumber("arm CAN Desired", desiredCanCoderPosition);
+        // SmartDashboard.putNumber("Arm Motor Encoder", arm.getEncoder());
+        // SmartDashboard.putNumber("arm CAN Desired", desiredCanCoderPosition);
         SmartDashboard.putNumber("arm CAN Coder", arm.getCANCoderPosition());
 
         checkForDriverInputs();

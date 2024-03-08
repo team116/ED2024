@@ -1,13 +1,13 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.Command;
-import frc.robot.subsystems.Grabber;
+import frc.robot.subsystems.SemiUsefulGrabber;
 
 public class GrabberCommand extends Command {
 
-    private Grabber grabber;
+    private SemiUsefulGrabber grabber;
 
-    public GrabberCommand(Grabber grabberSubSystem) {
+    public GrabberCommand(SemiUsefulGrabber grabberSubSystem) {
         this.grabber = grabberSubSystem;
         addRequirements(grabberSubSystem);
     }

@@ -7,12 +7,12 @@ import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
-public class Grabber extends SubsystemBase{
+public class SemiUsefulGrabber extends SubsystemBase{
     private CANSparkMax grabberMotor;
     private DigitalInput grabberLimitSwitch;
     private boolean limitSwitchEnabled = true;
 
-    public Grabber(){
+    public SemiUsefulGrabber(){
         grabberMotor = new CANSparkMax(Constants.GRABBER_MOTOR_ID, MotorType.kBrushless);
         grabberLimitSwitch = new DigitalInput(Constants.GRABBER_LIMIT_SWITCH_CHANNEL);
     }

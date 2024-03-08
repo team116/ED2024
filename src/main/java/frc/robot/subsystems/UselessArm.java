@@ -10,7 +10,7 @@ import com.revrobotics.CANSparkLowLevel.MotorType;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
-public class Arm extends SubsystemBase{
+public class UselessArm extends SubsystemBase{
     private CANSparkMax armMotor;
     private CANCoder armCanCoder;
     private SparkLimitSwitch armTopLimitSwitch;
@@ -43,11 +43,11 @@ public class Arm extends SubsystemBase{
         }
     }
 
-    public Arm(){
+    public UselessArm(){
         armMotor = new CANSparkMax(Constants.ARM_MOTOR_ID, MotorType.kBrushless);
         // armMotor.setIdleMode(IdleMode.kBrake);
 
-        armCanCoder = new CANCoder(Constants.ARM_CAN_CODER_ID);
+        armCanCoder = new CANCoder(Constants.USELESS_ARM_CAN_CODER_ID);
         armCanCoder.configAbsoluteSensorRange(AbsoluteSensorRange.Signed_PlusMinus180);
 
         armEncoder = armMotor.getEncoder();
@@ -96,7 +96,7 @@ public class Arm extends SubsystemBase{
         armMotor.set(-percentage);
     }
 
-    public void moveToPos(Arm.Position desiredArmPosition) {
+    public void moveToPos(UselessArm.Position desiredArmPosition) {
         this.setDesiredCANCoderPosition(desiredArmPosition.angleDegrees);
     }
 

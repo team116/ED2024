@@ -2,7 +2,7 @@ package frc.robot.autos.primitives;
 
 import edu.wpi.first.wpilibj.Timer;
 import frc.robot.commands.BaseArmCommand;
-import frc.robot.subsystems.Arm;
+import frc.robot.subsystems.UselessArm;
 
 public class MoveArmCommand extends BaseArmCommand {
 
@@ -10,26 +10,26 @@ public class MoveArmCommand extends BaseArmCommand {
     private static final double DEGREES_AWAY_FROM_DESIRED_THRESHOLD = 6.0;
 
     private int stabilizedCount;
-    private final Arm.Position desiredArmPosition;
+    private final UselessArm.Position desiredArmPosition;
     private double startTime;
     private final double timeToWaitSeconds;
     private final HoldArmCommand holdArmCommand;
 
     // FIXME: THIS SHOULD NOT BE USED IN THE FUTURE, TAKE IT OUT!!!!!!
-    public MoveArmCommand(Arm armSubSystem, Arm.Position desiredArmPosition) {
+    public MoveArmCommand(UselessArm armSubSystem, UselessArm.Position desiredArmPosition) {
         this(armSubSystem, desiredArmPosition, DEFAULT_MAX_SECONDS_TO_WAIT);
     }
    
-    public MoveArmCommand(Arm armSubSystem, Arm.Position desiredArmPosition, double maxWaitSeconds) {
+    public MoveArmCommand(UselessArm armSubSystem, UselessArm.Position desiredArmPosition, double maxWaitSeconds) {
         this(armSubSystem, desiredArmPosition, maxWaitSeconds, null);
     }
     // FIXME: Both of the above constructors need to be removed, only leaving to not change billizions of code yet
 
-    public MoveArmCommand(Arm armSubSystem, Arm.Position desiredArmPosition, HoldArmCommand holdArmCommand) {
+    public MoveArmCommand(UselessArm armSubSystem, UselessArm.Position desiredArmPosition, HoldArmCommand holdArmCommand) {
         this(armSubSystem, desiredArmPosition, DEFAULT_MAX_SECONDS_TO_WAIT, holdArmCommand);
     }
 
-    public MoveArmCommand(Arm armSubSystem, Arm.Position desiredArmPosition, double maxWaitSeconds, HoldArmCommand holdArmCommand) {
+    public MoveArmCommand(UselessArm armSubSystem, UselessArm.Position desiredArmPosition, double maxWaitSeconds, HoldArmCommand holdArmCommand) {
         super(armSubSystem);
         this.desiredArmPosition = desiredArmPosition;
         timeToWaitSeconds = maxWaitSeconds;

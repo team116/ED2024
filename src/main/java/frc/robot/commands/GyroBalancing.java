@@ -1,13 +1,13 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.Command;
-import frc.robot.subsystems.Swerve;
+import frc.robot.subsystems.SwerveSubsystem;
 
 public class GyroBalancing extends Command{
-    private Swerve swerve;
+    private SwerveSubsystem swerve;
     private int isBalancedCount = 0;
 
-    public GyroBalancing(Swerve swerveSubsystem){
+    public GyroBalancing(SwerveSubsystem swerveSubsystem){
         swerve = swerveSubsystem;
         addRequirements(swerveSubsystem);
     }

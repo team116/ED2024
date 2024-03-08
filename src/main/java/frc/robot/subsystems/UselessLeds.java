@@ -3,7 +3,7 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj.motorcontrol.Spark;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-public class Leds extends SubsystemBase {
+public class UselessLeds extends SubsystemBase {
     private Spark ledController;
     private boolean enabled;
 
@@ -30,7 +30,7 @@ public class Leds extends SubsystemBase {
         }
     }
 
-    public Leds() {
+    public UselessLeds() {
         ledController = new Spark(0);
     }
 
