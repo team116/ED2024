@@ -1,17 +1,43 @@
 package frc.robot.autos.primitives;
 
-import frc.robot.subsystems.Intake;
+import frc.robot.subsystems.IntakeSubsystem;
 
 public class RunIntakeMotorAnyDirection extends DurationCommand {
-    Intake intake;
+    private IntakeSubsystem intake;
+    private double speed;
+    private double distance;
 
-    public RunIntakeMotorAnyDirection(Intake intake, int maxTimeout) {
-        super(maxTimeout);
-        this.intake = intake;
+    public enum RollerDirection {
+        CONSUME,
+        EXPEL
     }
 
+    private final RollerDirection direction;
+
+    public RunIntakeMotorAnyDirection(IntakeSubsystem intake, double maxTimeout, RollerDirection direction) {
+        super(maxTimeout);
+        this.intake = intake;
+        this.direction = direction;
+    }
+
+    @Override
+    public void initialize() {
+        super.initialize();
+    }
+
+    @Override
     public void execute() {
-        
+        super.execute();
+    }
+
+    @Override
+    public void end(boolean interrupted) {
+        super.end(interrupted);
+    }
+
+    @Override
+    public boolean isFinished() {
+        return super.isFinished();
     }
     
 }
