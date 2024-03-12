@@ -6,9 +6,23 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 public class IntakeSubsystem extends SubsystemBase{
-    private CANSparkMax intakeMotor;
+    private CANSparkMax intakeMotor1;
+    private CANSparkMax intakeMotor2;
 
     public IntakeSubsystem() {
-        intakeMotor = new CANSparkMax(Constants.INTAKE_MOTOR_ID, MotorType.kBrushless);
+        intakeMotor1 = new CANSparkMax(Constants.INTAKE_MOTOR_1_ID, MotorType.kBrushless);
+
+    }
+
+    public void runRollersToConsume(double power) {
+        intakeMotor1.set(power);
+    }
+
+    public void runRollersToVomit(double power) {
+        intakeMotor1.set(-power);
+    }
+
+    public void stopMotor() {
+        intakeMotor1.set(0);
     }
 }

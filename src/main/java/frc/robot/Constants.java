@@ -22,7 +22,7 @@ public final class Constants {
   public static final int USELESS_ARM_MOTOR_ID = 51;
   public static final int SHOOTER_MOTOR_1_ID = 57;
   public static final int SHOOTER_MOTOR_2_ID = 58;
-  public static final int INTAKE_MOTOR_ID = 55;
+  public static final int INTAKE_MOTOR_1_ID = 55;
   public static final int ARM_ROTATION_MOTOR_ID = 56;
   public static final int GRABBER_MOTOR_ID = 52;
   public static final int USELESS_ARM_CAN_CODER_ID = 50;
