@@ -36,6 +36,11 @@ public class Shooter extends SubsystemBase {
         return shooter2Encoder.getVelocity();
     }
 
+    public void setAllMotorPower(double percentagePower) {
+        setMotor1Power(percentagePower);
+        setMotor2Power(percentagePower);
+    }
+
     public void setMotor1Power(double percentagePower) {
         shooterMotor1.set(percentagePower);
     }

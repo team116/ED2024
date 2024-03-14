@@ -34,6 +34,10 @@ public class Arm extends SubsystemBase {
 
         armMotorController = armRotationMotor.getPIDController();
 
+        enableLimitSwitches();
+
+        armEncoder.setDistancePerRotation(360);
+
         armRotationMotor.burnFlash();
     }
 
@@ -61,5 +65,9 @@ public class Arm extends SubsystemBase {
     public void disableLimitSwitches() {
         arm1LimitSwitch.enableLimitSwitch(false);
         arm2LimitSwitch.enableLimitSwitch(false);
+    }
+
+    public double getAngleDegrees() {
+        return armEncoder.getDistance();
     }
 }

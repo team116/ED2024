@@ -22,7 +22,9 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.POVButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
+import frc.robot.Constants.Swerve;
 import frc.robot.autos.*;
+import frc.robot.autos.primitives.RunShooterAtPower;
 import frc.robot.autos.primitives.DriveDistanceAtAngle.Direction;
 import frc.robot.commands.*;
 import frc.robot.subsystems.*;
@@ -37,8 +39,8 @@ import frc.robot.subsystems.*;
 public class RobotContainer {
   /* Controllers */
   private final Joystick driver = new Joystick(0);
-  //private final Joystick gunnerStation = new Joystick(1);
-  //private final Joystick gunnerLogitech = new Joystick(2);
+  private final Joystick gunnerStation = new Joystick(1);
+  private final Joystick gunnerLogitech = new Joystick(2);
 
   /* Drive Controls */
   private final int translationAxis = XboxController.Axis.kLeftY.value;
@@ -70,8 +72,7 @@ public class RobotContainer {
   // private final JoystickButton resetAngleEncodersButton =
   //     new JoystickButton(driver, XboxController.Button.kY.value);
 
-  //private final JoystickButton gunnerIntakeButton = new JoystickButton(gunnerStation, 1);
-  //private final JoystickButton gunnerOutakeButton = new JoystickButton(gunnerStation, 2);
+  private final JoystickButton shooterWheelsSpinUpButton = new JoystickButton(gunnerLogitech, 1);
 
   private final CommandXboxController driverXBoxController = new CommandXboxController(Constants.DRIVER_XBOX_CONTROLLER_PORT);
 
@@ -84,27 +85,22 @@ public class RobotContainer {
   // private final POVButton dpadLeft = new POVButton(driver, 270);
 
    /* Subsystems */
-  private final UselessArm arm = new UselessArm();
+  // private final UselessArm arm = new UselessArm(); // don't need these right now
+  // private final SemiUsefulGrabber grabber = new SemiUsefulGrabber();
+  // private final UselessLeds leds = new UselessLeds();
+
   private final Limelight limelight = new Limelight();
   private final SwerveSubsystem s_Swerve = new SwerveSubsystem();
-  private final SemiUsefulGrabber grabber = new SemiUsefulGrabber();
-  private final UselessLeds leds = new UselessLeds();
+  private final Shooter shooter = new Shooter();
+  private final Arm arm = new Arm();
+  private final IntakeSubsystem intakeSubsystem = new IntakeSubsystem();
+  
   private final Pigeon2 gyro = s_Swerve.getGyro();
 
   private final SendableChooser<Command> sendableChooser;
 
   private final ToggleStateBooleanSupplier robotCentricState = new ToggleStateBooleanSupplier();
 
-  /** So I don't have to copy it repeatedly */
-  public static final String[] autoConstantNames = new String[]{"PX", "IX", "DX", "PY", "IY", "DY", "PTheta", "ITheta", "DTheta"};
-
-  public void updateAutoConstantValues() {
-    for (String i : autoConstantNames) s_Swerve.setAutoConstant(i, SmartDashboard.getNumber(i, s_Swerve.getAutoConstant(i)));
-  }
-
-  public void displayAutoConstantValuesInDashboard() { // TODO: Make a way to reconfigure auto
-    for (String i : autoConstantNames) SmartDashboard.putNumber("Actual" + i, s_Swerve.getAutoConstant(i));
-  }
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
@@ -125,7 +121,7 @@ public class RobotContainer {
 
     NamedCommands.registerCommand("First Command", new InstantCommand(() -> SmartDashboard.putString("The Event Marker has been pressed", "It has been pressed")));
 
-    for (String i : autoConstantNames) SmartDashboard.putNumber(i, s_Swerve.getAutoConstant(i));
+   
 
     //grabber.setDefaultCommand(new GrabberCommand(grabber));
 
@@ -140,23 +136,7 @@ public class RobotContainer {
     sendableChooser.addOption("Do Nothing", new DoNothingCommand());
     sendableChooser.addOption("Drive Backwards 7 feet", new DriveBackwards(s_Swerve));
     
-    // sendableChooser.addOption("Charge Station Balance By Gyro", new ChargeStationBalanceByGyro(s_Swerve, arm, grabber, limelight));
-    // sendableChooser.addOption("Double Score Blue Bump", new DoubleScoreBlueBump(s_Swerve, arm, grabber, limelight));
-    // sendableChooser.addOption("Double Score Blue Easy", new DoubleScoreBlueEasy(s_Swerve, arm, grabber, limelight));
-    // sendableChooser.addOption("Double Score Red Bump", new DoubleScoreRedBump(s_Swerve, arm, grabber, limelight));
-    // sendableChooser.addOption("Double Score Red Easy", new DoubleScoreRedEasy(s_Swerve, arm, grabber, limelight));
-    // sendableChooser.addOption("Score cone high goal", new HighGoalCone(s_Swerve, arm, grabber, limelight));
-    // sendableChooser.addOption("Score cone mid goal", new MidGoalCone(s_Swerve, arm, grabber));
-    // sendableChooser.addOption("Score cone low goal", new GroundGoal(s_Swerve, arm, grabber));
-    // sendableChooser.addOption("Charge station after high goal", new ChargeStationAfterHighCone(s_Swerve, arm, grabber, limelight));
-    // sendableChooser.addOption("Charge station (simple) after high goal", new ChargeStationAfterHighConeSimple(s_Swerve, arm, grabber, limelight));
-    // sendableChooser.addOption("Charge station NO MOVE AFTER high goal", new ChargeStationAfterHighConeNoMove(s_Swerve, arm, grabber, limelight));
-    // sendableChooser.addOption("Blue bump side high goal", new HighGoalBlueBumpSide(s_Swerve, arm, grabber, limelight));
-    // sendableChooser.addOption("Red bump side high goal", new HighGoalRedBumpSide(s_Swerve, arm, grabber, limelight));
-    // sendableChooser.addOption("Drive forward until level", new DriveDirectionUntilLevel(s_Swerve, Direction.FORWARD));
-    // sendableChooser.addOption("Scores high cone then gets a second peice and scores in ground goal", new PickUpSecondPieceAfterHighConeAndScoreInGroundGoal(s_Swerve, arm, grabber, limelight, gyro));
-    // sendableChooser.addOption("Rotate 180 by encoders", new TestRotationByEncoders(s_Swerve, gyro));
-    // sendableChooser.addOption("Rotate 180 by gyro", new TestRotationByGyro(s_Swerve, gyro));
+
     SmartDashboard.putData("Auto Mode", sendableChooser);
   }
 
@@ -176,33 +156,7 @@ public class RobotContainer {
 
     //resetAngleEncodersButton.onTrue(new InstantCommand(() -> s_Swerve.resetAngleEncoders()));
 
-    //armMotorForward.onTrue(new InstantCommand(() -> arm.moveUp()));
-    //armMotorReverse.onTrue(new InstantCommand(() -> arm.moveDown()));
-    //Trigger armMotorForwardTrigger = armMotorForward.whileTrue(new RepeatCommand(new InstantCommand(() -> arm.moveUp(), arm)));
-    //armMotorForwardTrigger.onFalse(new InstantCommand(() -> arm.stop(), arm));
-    //Trigger armMotorReverseTrigger = armMotorReverse.whileTrue(new RepeatCommand(new InstantCommand(() -> arm.moveDown(), arm)));
-    //armMotorReverseTrigger.onFalse(new InstantCommand(() -> arm.stop(), arm));
-
-    // FIXME: LED Lights control will be a switch on driver station yellow/purple, triggered by a
-    // whileTrue on a button press on the logitech joystick
-
-    // Trigger armForwardTrigger = dpadUp.whileTrue(new RepeatCommand(new InstantCommand(() -> arm.moveUp(), arm)));
-    // armForwardTrigger.onFalse(new InstantCommand(() -> arm.stop(), arm));
-    // Trigger armReverseTrigger = dpadDown.whileTrue(new RepeatCommand(new InstantCommand(() -> arm.moveDown(), arm)));
-    // armReverseTrigger.onFalse(new InstantCommand(() -> arm.stop(), arm));
-
-    //enableArmLimitSwitches.onTrue(new InstantCommand(() -> arm.disableLimitSwitches()));
-    //enableArmLimitSwitches.onFalse(new InstantCommand(() -> arm.enableLimitSwitches()));
-
-    //dpadUp.whileTrue(new RepeatCommand(new InstantCommand(() -> System.out.println("arm up"))));
-    //dpadDown.whileTrue(new RepeatCommand(new InstantCommand(() -> System.out.println("arm down"))));
-    // driverLeftTrigger.whileTrue(new RepeatCommand(new InstantCommand(() -> grabber.getRidOfGamePiece(), grabber)));
-    // driverRightTrigger.whileTrue(new RepeatCommand(new InstantCommand(() -> grabber.intakeGamePiece(), grabber)));
-
-    //gunnerOutakeButton.whileTrue(new RepeatCommand(new InstantCommand(() -> grabber.getRidOfGamePiece(), grabber)));
-    //gunnerIntakeButton.whileTrue(new RepeatCommand(new InstantCommand(() -> grabber.intakeGamePiece(), grabber)));
-
-    driverOutakeButton.whileTrue(new RepeatCommand(new InstantCommand(() -> grabber.getRidOfGamePiece(), grabber)));
+    shooterWheelsSpinUpButton.whileTrue(new RunShooterAtPower(shooter, gunnerLogitech));
 
     driverRightTrigger.onTrue(new InstantCommand(() -> s_Swerve.toggleSlowMode()));
     dpadDown.onTrue(new InstantCommand(() -> s_Swerve.toggleSuperSlowMode()));
@@ -277,19 +231,35 @@ public class RobotContainer {
     return shape(start);
   }
 
-  public void reconfigureAutoBuilder() {
-    s_Swerve.reconfigureAutoBuilder();
+  public double getDistanceFromAprilTagInches() {
+    return limelight.getDistanceFromAprilTagInches();
+  }
+
+  public double getShooter1MotorSpeed() {
+    return shooter.getMotor1Velocity();
+  }
+
+  public double getShooter2MotorSpeed() {
+    return shooter.getMotor2Velocity();
+  }
+
+  public double getArmAngle() {
+    return arm.getAngleDegrees();
   }
 
   public void resetRobotToCorrectAutonomousFieldPosition() {
     s_Swerve.zeroGyro();
   }
 
+  public double getManualShooterSpeed() {
+    return -gunnerLogitech.getThrottle();
+  }
+
   public void enableLeds() {
-    leds.enable();
+    // leds.enable();
   }
 
   public void disableLeds() {
-    leds.disable();
+    // leds.disable();
   }
 }

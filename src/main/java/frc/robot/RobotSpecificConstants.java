@@ -4,8 +4,14 @@ import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.util.Units;
 
 public final class RobotSpecificConstants {
+    public enum TypeOfRobot {
+        CRESENDO_ROBOT,
+        TESTING_ROBOT,
+        CHARGED_UP_ROBOT
+    }
     
-    public static final boolean IS_COMPETITION_ROBOT = true; // Wonder if we can test robot itself to determine this
+    public static final TypeOfRobot THE_TYPE_OF_ROBOT = TypeOfRobot.CRESENDO_ROBOT; // Wonder if we can test robot itself to determine this
+    public static final boolean IS_COMPETITION_ROBOT = true;
 
     public static double getFrontToBackAxleToAxleMeters() {
         return Units.inchesToMeters(ROBOT_SPECIFIC_CONSTANTS.getFrontToBackAxleToAxleInches());
@@ -67,5 +73,8 @@ public final class RobotSpecificConstants {
     }
 
     private static final SpecificConstants ROBOT_SPECIFIC_CONSTANTS = IS_COMPETITION_ROBOT ? new CompetitionRobot() : new TestRobot();
+    // switch (THE_TYPE_OF_ROBOT) {
+    //     case
+    // }
 
 }

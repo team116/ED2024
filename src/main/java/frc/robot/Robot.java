@@ -46,6 +46,8 @@ public class Robot extends TimedRobot {
     // commands, running already-scheduled commands, removing finished or interrupted commands,
     // and running subsystem periodic() methods.  This must be called from the robot's periodic
     // block in order for anything in the Command-based framework to work.
+    SmartDashboard.putNumber("Arm angle", m_robotContainer.getArmAngle());
+    SmartDashboard.putNumber("Gunner Manuel Shooter Speed", m_robotContainer.getManualShooterSpeed());
     CommandScheduler.getInstance().run();
   }
 
@@ -63,7 +65,7 @@ public class Robot extends TimedRobot {
     m_robotContainer.resetRobotToCorrectAutonomousFieldPosition();
     m_robotContainer.disableLeds();
 
-    m_robotContainer.updateAutoConstantValues();
+    
 
     // m_robotContainer.reconfigureAutoBuilder();
 
@@ -79,7 +81,6 @@ public class Robot extends TimedRobot {
   @Override
   public void autonomousPeriodic() {
     // m_robotContainer.updateAutoConstantValues();
-    m_robotContainer.displayAutoConstantValuesInDashboard();
   }
 
   @Override
@@ -98,7 +99,11 @@ public class Robot extends TimedRobot {
 
   /** This function is called periodically during operator control. */
   @Override
-  public void teleopPeriodic() {}
+  public void teleopPeriodic() {
+    SmartDashboard.putNumber("Shooter 1 speed", m_robotContainer.getShooter1MotorSpeed());
+    SmartDashboard.putNumber("Shooter 2 speed", m_robotContainer.getShooter2MotorSpeed());
+    SmartDashboard.putNumber("Distance from april tag inches", m_robotContainer.getDistanceFromAprilTagInches());
+  }
 
   @Override
   public void testInit() {
