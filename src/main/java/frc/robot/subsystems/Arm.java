@@ -42,11 +42,11 @@ public class Arm extends SubsystemBase {
     }
 
     public void moveUp() {
-        armRotationMotor.set(0.3);
+        armRotationMotor.set(0.3); // TODO: Find a good speed for this
     }
 
     public void moveDown() {
-        armRotationMotor.set(-0.3);
+        armRotationMotor.set(-0.3); // TODO: Find a good speed for this
     }
 
     public void stop() {

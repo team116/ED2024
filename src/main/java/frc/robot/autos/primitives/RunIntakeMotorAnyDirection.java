@@ -18,6 +18,8 @@ public class RunIntakeMotorAnyDirection extends DurationCommand {
         super(maxTimeout);
         this.intake = intake;
         this.direction = direction;
+
+        addRequirements(intake);
     }
 
     @Override

@@ -54,6 +54,25 @@ public final class RobotSpecificConstants {
         double getAngleOffsetDegreesMod3();
     }
 
+    private static final class FRC2024Robot implements SpecificConstants {
+        public double getFrontToBackAxleToAxleInches() { return 24.875; }
+        public double getSideToSideTreadCenterToTreadCenterInches() { return 24.5; }
+        public double getAngleOffsetDegreesMod0() { return 230.097656250; }
+        public double getAngleOffsetDegreesMod1() { return 241.787109374; }
+        public double getAngleOffsetDegreesMod2() { return 193.53515625; }
+        public double getAngleOffsetDegreesMod3() { return 18.45703125; }
+    }
+
+    private static final class FRC2023Robot implements SpecificConstants {
+        public double getFrontToBackAxleToAxleInches() { return 24.875; }
+        public double getSideToSideTreadCenterToTreadCenterInches() { return 24.5; }
+        public double getAngleOffsetDegreesMod0() { return 200.478515625; }
+        public double getAngleOffsetDegreesMod1() { return 242.490234375; }
+        public double getAngleOffsetDegreesMod2() { return 299.4433593749; }
+        public double getAngleOffsetDegreesMod3() { return 269.0223093125; }
+    }
+
+    /**
     private static final class CompetitionRobot implements SpecificConstants {
         public double getFrontToBackAxleToAxleInches() { return 24.875; }
         public double getSideToSideTreadCenterToTreadCenterInches() { return 24.5; }
@@ -71,8 +90,9 @@ public final class RobotSpecificConstants {
         public double getAngleOffsetDegreesMod2() { return 21.533203125; }
         public double getAngleOffsetDegreesMod3() { return 290.302734375; }
     }
+    **/
 
-    private static final SpecificConstants ROBOT_SPECIFIC_CONSTANTS = IS_COMPETITION_ROBOT ? new CompetitionRobot() : new TestRobot();
+    private static final SpecificConstants ROBOT_SPECIFIC_CONSTANTS = IS_COMPETITION_ROBOT ? new FRC2024Robot() : new FRC2023Robot();
     // switch (THE_TYPE_OF_ROBOT) {
     //     case
     // }

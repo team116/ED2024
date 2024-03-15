@@ -24,8 +24,13 @@ import edu.wpi.first.wpilibj2.command.button.Trigger;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import frc.robot.Constants.Swerve;
 import frc.robot.autos.*;
+import frc.robot.autos.primitives.IntakeCommand;
+import frc.robot.autos.primitives.OutTakeCommand;
+import frc.robot.autos.primitives.PrepNoteToShoot;
+import frc.robot.autos.primitives.RunIntakeMotorAnyDirection;
 import frc.robot.autos.primitives.RunShooterAtPower;
 import frc.robot.autos.primitives.DriveDistanceAtAngle.Direction;
+import frc.robot.autos.primitives.RunIntakeMotorAnyDirection.RollerDirection;
 import frc.robot.commands.*;
 import frc.robot.subsystems.*;
 
@@ -74,6 +79,17 @@ public class RobotContainer {
 
   private final JoystickButton shooterWheelsSpinUpButton = new JoystickButton(gunnerLogitech, 1);
 
+  private final JoystickButton gunnerIntakeThenPrepNoteButton = new JoystickButton(gunnerLogitech, 2);
+  private final JoystickButton gunnerIntakeButton = new JoystickButton(gunnerLogitech, 5);
+  private final JoystickButton gunnerOutTakeButton = new JoystickButton(gunnerLogitech, 6);
+  private final JoystickButton gunnerPrepNoteToShoot = new JoystickButton(gunnerLogitech, 11);
+
+  private final JoystickButton gunnerArmUpSlowButton = new JoystickButton(gunnerLogitech, 9);
+  private final JoystickButton gunnerArmDownSlowButton = new JoystickButton(gunnerLogitech, 10);
+
+  private final JoystickButton gunnerClimberUpButton = new JoystickButton(gunnerLogitech, 8);
+  private final JoystickButton gunnerClimberDownButton  = new JoystickButton(gunnerLogitech, 7);
+
   private final CommandXboxController driverXBoxController = new CommandXboxController(Constants.DRIVER_XBOX_CONTROLLER_PORT);
 
   private final Trigger driverLeftTrigger = driverXBoxController.leftTrigger(0.5);
@@ -94,6 +110,7 @@ public class RobotContainer {
   private final Shooter shooter = new Shooter();
   private final Arm arm = new Arm();
   private final IntakeSubsystem intakeSubsystem = new IntakeSubsystem();
+  private final Climber climber = new Climber();
   
   private final Pigeon2 gyro = s_Swerve.getGyro();
 
@@ -162,6 +179,22 @@ public class RobotContainer {
     dpadDown.onTrue(new InstantCommand(() -> s_Swerve.toggleSuperSlowMode()));
 
     robotCentric.onTrue(new InstantCommand(() -> robotCentricState.toggleState()));
+
+    gunnerArmUpSlowButton.onTrue(new InstantCommand(() -> arm.moveUp()));
+    gunnerArmDownSlowButton.onTrue(new InstantCommand(() -> arm.moveDown()));
+    gunnerArmUpSlowButton.onFalse(new InstantCommand(() -> arm.stop()));
+    gunnerArmDownSlowButton.onFalse(new InstantCommand(() -> arm.stop()));
+
+    gunnerClimberUpButton.onTrue(new InstantCommand(() -> climber.pullUp()));
+    gunnerClimberDownButton.onTrue(new InstantCommand(() -> climber.pullDown()));
+    gunnerClimberUpButton.onFalse(new InstantCommand(() -> climber.stop()));
+    gunnerClimberDownButton.onFalse(new InstantCommand(() -> climber.stop()));
+
+    gunnerIntakeButton.whileTrue(new IntakeCommand(intakeSubsystem, Double.POSITIVE_INFINITY));
+    gunnerOutTakeButton.whileTrue(new OutTakeCommand(intakeSubsystem, Double.POSITIVE_INFINITY));
+    gunnerPrepNoteToShoot.onTrue(new PrepNoteToShoot(intakeSubsystem));
+    gunnerIntakeThenPrepNoteButton.onTrue(new IntakeCommand(intakeSubsystem, Double.POSITIVE_INFINITY));
+    gunnerIntakeThenPrepNoteButton.onFalse(new PrepNoteToShoot(intakeSubsystem));
     // XBox
     /*
 

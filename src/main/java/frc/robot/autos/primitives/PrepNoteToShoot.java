@@ -12,6 +12,6 @@ public class PrepNoteToShoot extends SequentialCommandGroup {
     }
 
     public PrepNoteToShoot(IntakeSubsystem intakeSubsystem) {
-        this(intakeSubsystem, 0.3);
+        this(intakeSubsystem, 0.3); // TODO: Find a good time for this
     }
 }

@@ -16,6 +16,7 @@ public class RunShooterAtPower extends Command {
         this.shooter = shooter;
         this.gunner = gunner;
 
+        addRequirements(shooter);
     }
 
     @Override

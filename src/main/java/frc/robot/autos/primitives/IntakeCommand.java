@@ -10,5 +10,4 @@ public class IntakeCommand extends SequentialCommandGroup {
 
         addCommands(intakeNote);
     }
-    
 }
