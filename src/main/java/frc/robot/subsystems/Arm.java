@@ -34,6 +34,8 @@ public class Arm extends SubsystemBase {
 
         armMotorController = armRotationMotor.getPIDController();
 
+        armRotationMotor.setInverted(true); //Originally  was false 
+
         enableLimitSwitches();
 
         armEncoder.setDistancePerRotation(360);
@@ -42,11 +44,11 @@ public class Arm extends SubsystemBase {
     }
 
     public void moveUp() {
-        armRotationMotor.set(0.3); // TODO: Find a good speed for this
+        armRotationMotor.set(0.65); // TODO: Find a good speed for this
     }
 
     public void moveDown() {
-        armRotationMotor.set(-0.3); // TODO: Find a good speed for this
+        armRotationMotor.set(-0.65); // TODO: Find a good speed for this
     }
 
     public void stop() {

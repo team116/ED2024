@@ -4,7 +4,7 @@ import edu.wpi.first.wpilibj.Timer;
 import frc.robot.commands.BaseArmCommand;
 import frc.robot.subsystems.UselessArm;
 
-public class MoveArmCommand extends BaseArmCommand {
+public class UselessMoveArmCommand extends BaseArmCommand {
 
     private static final double DEFAULT_MAX_SECONDS_TO_WAIT = 4.0;
     private static final double DEGREES_AWAY_FROM_DESIRED_THRESHOLD = 6.0;
@@ -16,24 +16,25 @@ public class MoveArmCommand extends BaseArmCommand {
     private final HoldArmCommand holdArmCommand;
 
     // FIXME: THIS SHOULD NOT BE USED IN THE FUTURE, TAKE IT OUT!!!!!!
-    public MoveArmCommand(UselessArm armSubSystem, UselessArm.Position desiredArmPosition) {
+    public UselessMoveArmCommand(UselessArm armSubSystem, UselessArm.Position desiredArmPosition) {
         this(armSubSystem, desiredArmPosition, DEFAULT_MAX_SECONDS_TO_WAIT);
     }
    
-    public MoveArmCommand(UselessArm armSubSystem, UselessArm.Position desiredArmPosition, double maxWaitSeconds) {
+    public UselessMoveArmCommand(UselessArm armSubSystem, UselessArm.Position desiredArmPosition, double maxWaitSeconds) {
         this(armSubSystem, desiredArmPosition, maxWaitSeconds, null);
     }
     // FIXME: Both of the above constructors need to be removed, only leaving to not change billizions of code yet
 
-    public MoveArmCommand(UselessArm armSubSystem, UselessArm.Position desiredArmPosition, HoldArmCommand holdArmCommand) {
+    public UselessMoveArmCommand(UselessArm armSubSystem, UselessArm.Position desiredArmPosition, HoldArmCommand holdArmCommand) {
         this(armSubSystem, desiredArmPosition, DEFAULT_MAX_SECONDS_TO_WAIT, holdArmCommand);
     }
 
-    public MoveArmCommand(UselessArm armSubSystem, UselessArm.Position desiredArmPosition, double maxWaitSeconds, HoldArmCommand holdArmCommand) {
+    public UselessMoveArmCommand(UselessArm armSubSystem, UselessArm.Position desiredArmPosition, double maxWaitSeconds, HoldArmCommand holdArmCommand) {
         super(armSubSystem);
         this.desiredArmPosition = desiredArmPosition;
         timeToWaitSeconds = maxWaitSeconds;
         this.holdArmCommand = holdArmCommand;
+        
     }
 
     @Override

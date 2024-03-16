@@ -48,6 +48,13 @@ public class Robot extends TimedRobot {
     // block in order for anything in the Command-based framework to work.
     SmartDashboard.putNumber("Arm angle", m_robotContainer.getArmAngle());
     SmartDashboard.putNumber("Gunner Manuel Shooter Speed", m_robotContainer.getManualShooterSpeed());
+
+    SmartDashboard.putNumber("Shooter 1 speed", m_robotContainer.getShooter1MotorSpeed());
+    SmartDashboard.putNumber("Shooter 2 speed", m_robotContainer.getShooter2MotorSpeed());
+    SmartDashboard.putNumber("Distance from april tag inches", m_robotContainer.getDistanceFromAprilTagInches());
+
+    SmartDashboard.putBoolean("robot mode", m_robotContainer.getRobotCentricState());
+
     CommandScheduler.getInstance().run();
   }
 
@@ -100,9 +107,9 @@ public class Robot extends TimedRobot {
   /** This function is called periodically during operator control. */
   @Override
   public void teleopPeriodic() {
-    SmartDashboard.putNumber("Shooter 1 speed", m_robotContainer.getShooter1MotorSpeed());
-    SmartDashboard.putNumber("Shooter 2 speed", m_robotContainer.getShooter2MotorSpeed());
-    SmartDashboard.putNumber("Distance from april tag inches", m_robotContainer.getDistanceFromAprilTagInches());
+    //SmartDashboard.putNumber("Shooter 1 speed", m_robotContainer.getShooter1MotorSpeed());
+    //SmartDashboard.putNumber("Shooter 2 speed", m_robotContainer.getShooter2MotorSpeed());
+    //SmartDashboard.putNumber("Distance from april tag inches", m_robotContainer.getDistanceFromAprilTagInches());
   }
 
   @Override

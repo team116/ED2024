@@ -9,9 +9,10 @@ private static final double EPSILON = 0.1;
     private Arm armSubsystem;
     private double targetAngle;
     
-    public MoveArmToAngle(Arm arm, double duration) {
+    public MoveArmToAngle(Arm arm, double angle, double duration) {
         super(duration);
         armSubsystem = arm;
+        this.targetAngle = angle;
 
         addRequirements(arm);
     }
@@ -25,7 +26,6 @@ private static final double EPSILON = 0.1;
     @Override
     public void execute() {
         super.execute();
-        double previousAngle;
         double currentAngle = armSubsystem.getAngleDegrees();
         double diff = targetAngle - currentAngle;
 
@@ -33,9 +33,9 @@ private static final double EPSILON = 0.1;
             armSubsystem.stop();
             atTargetAngle = true;
         } else if (diff < 0) {
-            armSubsystem.moveUp();
-        }else {
             armSubsystem.moveDown();
+        }else {
+            armSubsystem.moveUp();
         }
     }
 

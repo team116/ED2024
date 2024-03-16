@@ -26,7 +26,7 @@ public class KnownPosSpeakerMacro extends ParallelCommandGroup {
                         ),
                     new RunShooterAtSpeed(shooter, shooterSpeed, Double.POSITIVE_INFINITY)
                 ),
-                new MoveArmToAngle(arm, angle)
+                new MoveArmToAngle(arm, angle, 3.0)
             )
         );
     }

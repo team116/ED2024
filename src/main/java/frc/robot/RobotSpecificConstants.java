@@ -57,10 +57,10 @@ public final class RobotSpecificConstants {
     private static final class FRC2024Robot implements SpecificConstants {
         public double getFrontToBackAxleToAxleInches() { return 24.875; }
         public double getSideToSideTreadCenterToTreadCenterInches() { return 24.5; }
-        public double getAngleOffsetDegreesMod0() { return 230.097656250; }
-        public double getAngleOffsetDegreesMod1() { return 241.787109374; }
+        public double getAngleOffsetDegreesMod0() { return 56.77734375; }
+        public double getAngleOffsetDegreesMod1() { return 61.787109375; }
         public double getAngleOffsetDegreesMod2() { return 193.53515625; }
-        public double getAngleOffsetDegreesMod3() { return 18.45703125; }
+        public double getAngleOffsetDegreesMod3() { return 199.07225625; }
     }
 
     private static final class FRC2023Robot implements SpecificConstants {

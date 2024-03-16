@@ -4,7 +4,7 @@ import frc.robot.subsystems.IntakeSubsystem;
 
 public class RunIntakeMotorAnyDirection extends DurationCommand {
     private IntakeSubsystem intake;
-    private double speed = 0.5;
+    private double speed = 1.0;
     // private double distance; // Might not need to use this
 
     public enum RollerDirection {
@@ -26,9 +26,9 @@ public class RunIntakeMotorAnyDirection extends DurationCommand {
     public void initialize() {
         super.initialize();
         if (direction == RollerDirection.CONSUME) {
-            intake.runRollersToConsume(speed);
+            intake.runRollersToConsume();
         } else {
-            intake.runRollersToVomit(speed);
+            intake.runRollersToVomit();
         } 
     }
 

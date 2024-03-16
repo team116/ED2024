@@ -12,16 +12,19 @@ public class IntakeSubsystem extends SubsystemBase{
     public IntakeSubsystem() {
         intakeMotor1 = new CANSparkMax(Constants.INTAKE_MOTOR_1_ID, MotorType.kBrushless);
         intakeMotor2 = new CANSparkMax(Constants.INTAKE_MOTOR_2_ID, MotorType.kBrushless);
+
+        intakeMotor1.setInverted(true); //Originally was 
+        intakeMotor2.setInverted(true);
     }
 
-    public void runRollersToConsume(double power) {
-        intakeMotor1.set(power);
-        intakeMotor2.set(power);
+    public void runRollersToConsume() {
+        intakeMotor1.set(1.0);
+        intakeMotor2.set(1.0);
     }
 
-    public void runRollersToVomit(double power) {
-        intakeMotor1.set(-power);
-        intakeMotor2.set(-power);
+    public void runRollersToVomit() {
+        intakeMotor1.set(-0.5);
+        intakeMotor2.set(-0.5);
     }
 
     public void stopMotor() {

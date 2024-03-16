@@ -25,6 +25,7 @@ import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import frc.robot.Constants.Swerve;
 import frc.robot.autos.*;
 import frc.robot.autos.primitives.IntakeCommand;
+import frc.robot.autos.primitives.MoveArmToAngle;
 import frc.robot.autos.primitives.OutTakeCommand;
 import frc.robot.autos.primitives.PrepNoteToShoot;
 import frc.robot.autos.primitives.RunIntakeMotorAnyDirection;
@@ -86,6 +87,7 @@ public class RobotContainer {
 
   private final JoystickButton gunnerArmUpSlowButton = new JoystickButton(gunnerLogitech, 9);
   private final JoystickButton gunnerArmDownSlowButton = new JoystickButton(gunnerLogitech, 10);
+  private final JoystickButton gunnerArmToPositionButton = new JoystickButton(gunnerLogitech,12);
 
   private final JoystickButton gunnerClimberUpButton = new JoystickButton(gunnerLogitech, 8);
   private final JoystickButton gunnerClimberDownButton  = new JoystickButton(gunnerLogitech, 7);
@@ -122,6 +124,7 @@ public class RobotContainer {
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     DriverStation.silenceJoystickConnectionWarning(true);
+    SmartDashboard.putNumber("Delay", 0);
 
     s_Swerve.setDefaultCommand(
         new TeleopSwerve(
@@ -148,10 +151,13 @@ public class RobotContainer {
     configureButtonBindings();
 
 
-
+    double delay = SmartDashboard.getNumber("Delay", 0);
     sendableChooser = AutoBuilder.buildAutoChooser();
     sendableChooser.addOption("Do Nothing", new DoNothingCommand());
-    sendableChooser.addOption("Drive Backwards 7 feet", new DriveBackwards(s_Swerve));
+    sendableChooser.addOption("One Note Auto", new OneNoteAutoAndMoveOut(s_Swerve, arm, intakeSubsystem, shooter, delay));
+    sendableChooser.addOption("Left One Note Auto", new OneNoteLeftAutoAndMoveOut(s_Swerve, arm, intakeSubsystem, shooter, delay));
+    sendableChooser.addOption("Right One Note Auto", new OneNoteRightAutoAndMoveOut(s_Swerve, arm, intakeSubsystem, shooter, delay));
+    sendableChooser.addOption("drive back", new DriveBackwards(s_Swerve));
     
 
     SmartDashboard.putData("Auto Mode", sendableChooser);
@@ -184,6 +190,7 @@ public class RobotContainer {
     gunnerArmDownSlowButton.onTrue(new InstantCommand(() -> arm.moveDown()));
     gunnerArmUpSlowButton.onFalse(new InstantCommand(() -> arm.stop()));
     gunnerArmDownSlowButton.onFalse(new InstantCommand(() -> arm.stop()));
+    gunnerArmToPositionButton.whileTrue(new MoveArmToAngle(arm, 72.0, 3.0));
 
     gunnerClimberUpButton.onTrue(new InstantCommand(() -> climber.pullUp()));
     gunnerClimberDownButton.onTrue(new InstantCommand(() -> climber.pullDown()));
@@ -294,5 +301,9 @@ public class RobotContainer {
 
   public void disableLeds() {
     // leds.disable();
+  }
+
+  public boolean getRobotCentricState() {
+    return robotCentricState.getAsBoolean();
   }
 }

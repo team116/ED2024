@@ -7,7 +7,7 @@ public class ToggleStateBooleanSupplier implements BooleanSupplier{
     private boolean state;
 
     public ToggleStateBooleanSupplier() {
-        this(false);
+        this(true); //original was false
     }
 
     public ToggleStateBooleanSupplier(boolean defaultState) {
