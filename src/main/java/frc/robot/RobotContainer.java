@@ -75,8 +75,8 @@ public class RobotContainer {
   private final JoystickButton autoAlignMacroButton =
       new JoystickButton(driver, XboxController.Button.kB.value);
 
-  // private final JoystickButton resetAngleEncodersButton =
-  //     new JoystickButton(driver, XboxController.Button.kY.value);
+  private final JoystickButton resetAngleEncodersButton =
+      new JoystickButton(driver, XboxController.Button.kY.value);
 
   private final JoystickButton shooterWheelsSpinUpButton = new JoystickButton(gunnerLogitech, 1);
 
@@ -90,7 +90,7 @@ public class RobotContainer {
   private final JoystickButton gunnerArmToPositionButton = new JoystickButton(gunnerLogitech,12);
 
   private final JoystickButton gunnerClimberUpButton = new JoystickButton(gunnerLogitech, 8);
-  private final JoystickButton gunnerClimberDownButton  = new JoystickButton(gunnerLogitech, 7);
+  private final JoystickButton gunnerClimberUpSlowButton  = new JoystickButton(gunnerLogitech, 7);
 
   private final CommandXboxController driverXBoxController = new CommandXboxController(Constants.DRIVER_XBOX_CONTROLLER_PORT);
 
@@ -177,7 +177,7 @@ public class RobotContainer {
     // toggleTesterButton.onTrue(new InstantCommand(() -> limelight.toggleStreamMode()));
     autoAlignMacroButton.onTrue(new AprilTagAlignmentCommand(s_Swerve, limelight));
 
-    //resetAngleEncodersButton.onTrue(new InstantCommand(() -> s_Swerve.resetAngleEncoders()));
+    resetAngleEncodersButton.onTrue(new InstantCommand(() -> s_Swerve.resetAngleEncoders()));
 
     shooterWheelsSpinUpButton.whileTrue(new RunShooterAtPower(shooter, gunnerLogitech));
 
@@ -193,9 +193,9 @@ public class RobotContainer {
     gunnerArmToPositionButton.whileTrue(new MoveArmToAngle(arm, 72.0, 3.0));
 
     gunnerClimberUpButton.onTrue(new InstantCommand(() -> climber.pullUp()));
-    gunnerClimberDownButton.onTrue(new InstantCommand(() -> climber.pullDown()));
+    gunnerClimberUpSlowButton.onTrue(new InstantCommand(() -> climber.pullUpSlow()));
     gunnerClimberUpButton.onFalse(new InstantCommand(() -> climber.stop()));
-    gunnerClimberDownButton.onFalse(new InstantCommand(() -> climber.stop()));
+    gunnerClimberUpSlowButton.onFalse(new InstantCommand(() -> climber.stop()));
 
     gunnerIntakeButton.whileTrue(new IntakeCommand(intakeSubsystem, Double.POSITIVE_INFINITY));
     gunnerOutTakeButton.whileTrue(new OutTakeCommand(intakeSubsystem, Double.POSITIVE_INFINITY));

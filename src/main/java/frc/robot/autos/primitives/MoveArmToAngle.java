@@ -3,6 +3,7 @@ package frc.robot.autos.primitives;
 import frc.robot.subsystems.Arm;
 
 public class MoveArmToAngle extends DurationCommand {
+private static final double CLOSE_EPSILON = 5.0;
 private static final double EPSILON = 0.1;
 
     private boolean atTargetAngle;
@@ -29,13 +30,24 @@ private static final double EPSILON = 0.1;
         double currentAngle = armSubsystem.getAngleDegrees();
         double diff = targetAngle - currentAngle;
 
-        if (Math.abs(diff) < EPSILON) {
+        double absDiff = Math.abs(diff);
+        if (absDiff < EPSILON) {
             armSubsystem.stop();
             atTargetAngle = true;
-        } else if (diff < 0) {
-            armSubsystem.moveDown();
-        }else {
-            armSubsystem.moveUp();
+        } else {
+            if (diff < 0) {
+                if (absDiff < CLOSE_EPSILON) {
+                    armSubsystem.moveDownSlow();
+                } else {
+                    armSubsystem.moveDown();
+                }
+            } else {
+                if (absDiff < CLOSE_EPSILON) {
+                    armSubsystem.moveUpSlow();
+                } else {
+                    armSubsystem.moveUp();
+                }
+            }
         }
     }
 
