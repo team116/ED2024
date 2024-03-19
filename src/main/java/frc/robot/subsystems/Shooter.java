@@ -19,8 +19,8 @@ public class Shooter extends SubsystemBase {
         shooterMotor1 = new CANSparkMax(Constants.SHOOTER_MOTOR_1_ID, MotorType.kBrushless);
         shooterMotor2 = new CANSparkMax(Constants.SHOOTER_MOTOR_2_ID, MotorType.kBrushless);
 
-        shooterMotor1.setIdleMode(IdleMode.kCoast);
-        shooterMotor2.setIdleMode(IdleMode.kCoast);
+        shooterMotor1.setIdleMode(IdleMode.kBrake);
+        shooterMotor2.setIdleMode(IdleMode.kBrake);
 
         shooterMotor2.setInverted(true);
 

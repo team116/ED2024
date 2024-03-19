@@ -157,6 +157,7 @@ public class RobotContainer {
     sendableChooser.addOption("One Note Auto", new OneNoteAutoAndMoveOut(s_Swerve, arm, intakeSubsystem, shooter, delay));
     sendableChooser.addOption("Left One Note Auto", new OneNoteLeftAutoAndMoveOut(s_Swerve, arm, intakeSubsystem, shooter, delay));
     sendableChooser.addOption("Right One Note Auto", new OneNoteRightAutoAndMoveOut(s_Swerve, arm, intakeSubsystem, shooter, delay));
+    sendableChooser.addOption("Center two note", new TwoNoteAuto(s_Swerve, arm, intakeSubsystem, shooter, delay));
     sendableChooser.addOption("drive back", new DriveBackwards(s_Swerve));
     
 
@@ -190,7 +191,7 @@ public class RobotContainer {
     gunnerArmDownSlowButton.onTrue(new InstantCommand(() -> arm.moveDown()));
     gunnerArmUpSlowButton.onFalse(new InstantCommand(() -> arm.stop()));
     gunnerArmDownSlowButton.onFalse(new InstantCommand(() -> arm.stop()));
-    gunnerArmToPositionButton.whileTrue(new MoveArmToAngle(arm, 72.0, 3.0));
+    gunnerArmToPositionButton.whileTrue(new MoveArmToAngle(arm, Constants.SPEAKER_SHOOTING_ARM_ANGLE, 3.0));
 
     gunnerClimberUpButton.onTrue(new InstantCommand(() -> climber.pullUp()));
     gunnerClimberUpSlowButton.onTrue(new InstantCommand(() -> climber.pullUpSlow()));
