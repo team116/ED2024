@@ -6,9 +6,9 @@ import frc.robot.subsystems.IntakeSubsystem;
 
 public class FeedNoteToShooter extends SequentialCommandGroup {
     public FeedNoteToShooter(IntakeSubsystem intakeSubsystem, double duration) {
-        RunIntakeMotorAnyDirection feedNoteToSooter = new RunIntakeMotorAnyDirection(intakeSubsystem, duration, RollerDirection.CONSUME);
+        RunIntakeMotorAnyDirection feedNoteToShooter = new RunIntakeMotorAnyDirection(intakeSubsystem, duration, RollerDirection.CONSUME);
 
-        addCommands(feedNoteToSooter);
+        addCommands(feedNoteToShooter);
     }
 
     public FeedNoteToShooter(IntakeSubsystem intakeSubsystem) {

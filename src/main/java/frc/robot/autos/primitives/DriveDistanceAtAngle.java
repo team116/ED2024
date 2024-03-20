@@ -13,7 +13,11 @@ public class DriveDistanceAtAngle extends SequentialCommandGroup {
         DIAGONAL_FORWARD_LEFT(45.0d, 1.0),
         DIAGONAL_FORWARD_RIGHT(-45.0d, 1.0),
         DIAGONAL_BACKWARD_LEFT(-45.0d, -1.0),
-        DIAGONAL_BACKWARD_RIGHT(45.0d, -1.0);
+        DIAGONAL_BACKWARD_RIGHT(45.0d, -1.0),
+        SHALLOW_DIAGONAL_FORWARD_LEFT(22.5d, 1.0),
+        SHALLOW_DIAGONAL_FORWARD_RIGHT(-22.5d, 1.0),
+        SHALLOW_DIAGONAL_BACKWARD_LEFT(-22.5d, -1.0),
+        SHALLOW_DIAGONAL_BACKWARD_RIGHT(22.5d, -1.0);
 
         public final double angleDegrees;
         public final double directionMultiplier;

@@ -1,13 +1,17 @@
 package frc.robot;
 
-public class HelperFunctions {
-    public double getAngleFromDistance(double distance) {
+public interface HelperFunctions {
 
+    static double getAngleFromDistance(double distance) {
         return 0.0;
     }
 
-    public double getSpeedFromDistance(double distance) {
-        
+    static double getSpeedFromDistance(double distance) {
         return 0.0;
     }
+
+    static double getShooterRPMsFromShooterPower(double power) {
+        return 0.0;
+    }
+
 }
