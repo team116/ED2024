@@ -20,7 +20,12 @@ public final class Constants {
   public static final int DRIVER_XBOX_CONTROLLER_PORT = 0;
 
   public static final double SPEAKER_SHOOTING_ARM_ANGLE = 72.0;
-  public static final double FLOOR_INTAKE_ARM_ANGLE = 10.0; // What should this really be ??? Need to test...
+  public static final double SPEAKER_SHOOTING_POWER = 0.8;
+  public static final double FLOOR_INTAKE_ARM_ANGLE = 18.0;
+  public static final double STOWED_ARM_ANGLE = 40.0;
+  public static final double PODIUM_SHOOTING_ARM_ANGLE = 55.0;
+  public static final double AMP_SCORING_ARM_ANGLE = 100;
+  public static final double AMP_SCORING_POWER = 0.5;
   
   public static final int SHOOTER_MOTOR_1_ID = 57;
   public static final int SHOOTER_MOTOR_2_ID = 58;

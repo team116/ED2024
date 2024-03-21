@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.Constants;
 import frc.robot.autos.primitives.DriveDistanceAtAngle;
 import frc.robot.autos.primitives.DriveDistanceAtAngle.Direction;
+import frc.robot.autos.primitives.DriveDistanceAtAngle.Speed;
 import frc.robot.autos.primitives.DurationCommand;
 import frc.robot.autos.primitives.IntakeCommand;
 import frc.robot.autos.primitives.MoveArmToAngle;
@@ -26,6 +27,7 @@ public class TwoNoteAuto extends SequentialCommandGroup {
         PrepNoteToShoot prepNoteToShoot = new PrepNoteToShoot(intakeSubsystem);
 
         DriveDistanceAtAngle driveForwardToSpeaker = new DriveDistanceAtAngle(swerve, 111, Direction.FORWARD);
+        DriveDistanceAtAngle driveOutOfZone = new DriveDistanceAtAngle(swerve, 111, Direction.REVERSE, Speed.FAST);
 
         ParallelCommandGroup intakeNoteAndPrepareToShoot = new ParallelCommandGroup(
             driveForwardToSpeaker,
@@ -37,22 +39,34 @@ public class TwoNoteAuto extends SequentialCommandGroup {
         );
 
         RunShooterAtPowerAndDuration runShooterAtPowerAndDuration =
-            new RunShooterAtPowerAndDuration(shooter, 0.8, 5);
+            new RunShooterAtPowerAndDuration(shooter, Constants.SPEAKER_SHOOTING_POWER, 2);
 
         ParallelCommandGroup shootingSequence = new ParallelCommandGroup(
             runShooterAtPowerAndDuration,
             new SequentialCommandGroup(
-                new DurationCommand(2),
-                new IntakeCommand(intakeSubsystem, 1.0)
+                new DurationCommand(1.5),
+                new IntakeCommand(intakeSubsystem, 0.5)
+            )
+        );
+
+        RunShooterAtPowerAndDuration secondRunShooterAtPowerAndDuration =
+            new RunShooterAtPowerAndDuration(shooter, Constants.SPEAKER_SHOOTING_POWER, 2);
+
+        ParallelCommandGroup secondShootingSequence = new ParallelCommandGroup(
+            secondRunShooterAtPowerAndDuration,
+            new SequentialCommandGroup(
+                new DurationCommand(1.5),
+                new IntakeCommand(intakeSubsystem, 0.5)
             )
         );
 
         addCommands(
             new InstantCommand(() -> SmartDashboard.putNumber("autoStart TwoNote", Timer.getFPGATimestamp())),
-            new OneNoteAutoAndMoveOut(swerve, arm, intakeSubsystem, shooter, timeToWaitAtStart),
-            new MoveArmToAngle(arm, 10.0, 2.0),
-            intakeNoteAndPrepareToShoot,
             shootingSequence,
+            driveOutOfZone,
+            new MoveArmToAngle(arm, Constants.FLOOR_INTAKE_ARM_ANGLE, 2.0),
+            intakeNoteAndPrepareToShoot,
+            secondShootingSequence,
             new InstantCommand(() -> SmartDashboard.putNumber("autoFinish TwoNote", Timer.getFPGATimestamp()))
         );
     }

@@ -1,5 +1,6 @@
 package frc.robot.autos.primitives;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.subsystems.Arm;
 
 public class MoveArmToAngle extends DurationCommand {
@@ -22,6 +23,7 @@ private static final double EPSILON = 0.1;
     public void initialize() {
         super.initialize();
         atTargetAngle = false;
+        SmartDashboard.putBoolean("At Target Angle", atTargetAngle);
     }
 
     @Override
@@ -54,6 +56,7 @@ private static final double EPSILON = 0.1;
     @Override
     public void end(boolean interrupted) {
         armSubsystem.stop();
+        SmartDashboard.putBoolean("At Target Angle", atTargetAngle);
         super.end(interrupted);
     }
 

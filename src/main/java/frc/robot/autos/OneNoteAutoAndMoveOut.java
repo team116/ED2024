@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.ParallelDeadlineGroup;
 import edu.wpi.first.wpilibj2.command.ParallelRaceGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import frc.robot.Constants;
 import frc.robot.autos.primitives.DriveDistanceAtAngle;
 import frc.robot.autos.primitives.DurationCommand;
 import frc.robot.autos.primitives.IntakeCommand;
@@ -31,7 +32,7 @@ public class OneNoteAutoAndMoveOut extends SequentialCommandGroup {
         DurationCommand waitToShoot = new DurationCommand(timeToWaitAtStart);
 
         RunShooterAtPowerAndDuration runShooterAtPowerAndDuration =
-            new RunShooterAtPowerAndDuration(shooter, 0.8, 5);
+            new RunShooterAtPowerAndDuration(shooter, Constants.SPEAKER_SHOOTING_POWER, 5);
 
         ParallelCommandGroup shootingSequence = new ParallelCommandGroup(
             runShooterAtPowerAndDuration,

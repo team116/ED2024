@@ -84,10 +84,21 @@ public class RobotContainer {
   private final JoystickButton gunnerIntakeButton = new JoystickButton(gunnerLogitech, 5);
   private final JoystickButton gunnerOutTakeButton = new JoystickButton(gunnerLogitech, 6);
   private final JoystickButton gunnerPrepNoteToShoot = new JoystickButton(gunnerLogitech, 11);
+  private final JoystickButton gunnerAmpScoringButton = new JoystickButton(gunnerLogitech,3);
+  private final JoystickButton gunnerSpeakerScoringButton = new JoystickButton(gunnerLogitech,4);
+
 
   private final JoystickButton gunnerArmUpSlowButton = new JoystickButton(gunnerLogitech, 9);
   private final JoystickButton gunnerArmDownSlowButton = new JoystickButton(gunnerLogitech, 10);
-  private final JoystickButton gunnerArmToPositionButton = new JoystickButton(gunnerLogitech,12);
+  private final JoystickButton gunnerArmToCloseSpeakerPositionButton = new JoystickButton(gunnerLogitech,12);
+  
+  private final JoystickButton gunnerPadArmToIntakePositionButton = new JoystickButton(gunnerStation,5);
+  private final JoystickButton gunnerPadArmToStowedPositionButton = new JoystickButton(gunnerStation,6);
+  private final JoystickButton gunnerPadArmToPodiumSpeakerPositionButton = new JoystickButton(gunnerStation,4);
+  private final JoystickButton gunnerPadArmToCloseSpeakerPositionButton = new JoystickButton(gunnerStation,11);
+  private final JoystickButton gunnerPadArmToAmpPositionButton = new JoystickButton(gunnerStation,12);
+  
+
 
   private final JoystickButton gunnerClimberUpButton = new JoystickButton(gunnerLogitech, 8);
   private final JoystickButton gunnerClimberUpSlowButton  = new JoystickButton(gunnerLogitech, 7);
@@ -191,7 +202,14 @@ public class RobotContainer {
     gunnerArmDownSlowButton.onTrue(new InstantCommand(() -> arm.moveDown()));
     gunnerArmUpSlowButton.onFalse(new InstantCommand(() -> arm.stop()));
     gunnerArmDownSlowButton.onFalse(new InstantCommand(() -> arm.stop()));
-    gunnerArmToPositionButton.whileTrue(new MoveArmToAngle(arm, Constants.SPEAKER_SHOOTING_ARM_ANGLE, 3.0));
+    gunnerArmToCloseSpeakerPositionButton.whileTrue(new MoveArmToAngle(arm, Constants.SPEAKER_SHOOTING_ARM_ANGLE, 3.0));
+    gunnerPadArmToIntakePositionButton.whileTrue(new MoveArmToAngle(arm, Constants.FLOOR_INTAKE_ARM_ANGLE, 3.0));
+    gunnerPadArmToStowedPositionButton.whileTrue(new MoveArmToAngle(arm, Constants.STOWED_ARM_ANGLE, 3.0));
+    gunnerPadArmToPodiumSpeakerPositionButton.whileTrue(new MoveArmToAngle(arm, Constants.PODIUM_SHOOTING_ARM_ANGLE, 3.0));
+    gunnerPadArmToCloseSpeakerPositionButton.whileTrue(new MoveArmToAngle(arm, Constants.SPEAKER_SHOOTING_ARM_ANGLE, 3.0));
+    gunnerPadArmToAmpPositionButton.whileTrue(new MoveArmToAngle(arm, Constants.AMP_SCORING_ARM_ANGLE, 3.0));
+
+
 
     gunnerClimberUpButton.onTrue(new InstantCommand(() -> climber.pullUp()));
     gunnerClimberUpSlowButton.onTrue(new InstantCommand(() -> climber.pullUpSlow()));
@@ -203,6 +221,8 @@ public class RobotContainer {
     gunnerPrepNoteToShoot.onTrue(new PrepNoteToShoot(intakeSubsystem));
     gunnerIntakeThenPrepNoteButton.onTrue(new IntakeCommand(intakeSubsystem, Double.POSITIVE_INFINITY));
     gunnerIntakeThenPrepNoteButton.onFalse(new PrepNoteToShoot(intakeSubsystem));
+    gunnerAmpScoringButton.whileTrue(new AmpScoring(shooter, intakeSubsystem, arm));
+    gunnerSpeakerScoringButton.whileTrue(new SpeakerScoringClose(shooter, intakeSubsystem, arm));
     // XBox
     /*
 
