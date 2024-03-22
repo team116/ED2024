@@ -92,11 +92,13 @@ public class RobotContainer {
   private final JoystickButton gunnerArmDownSlowButton = new JoystickButton(gunnerLogitech, 10);
   private final JoystickButton gunnerArmToCloseSpeakerPositionButton = new JoystickButton(gunnerLogitech,12);
   
-  private final JoystickButton gunnerPadArmToIntakePositionButton = new JoystickButton(gunnerStation,5);
-  private final JoystickButton gunnerPadArmToStowedPositionButton = new JoystickButton(gunnerStation,6);
-  private final JoystickButton gunnerPadArmToPodiumSpeakerPositionButton = new JoystickButton(gunnerStation,4);
-  private final JoystickButton gunnerPadArmToCloseSpeakerPositionButton = new JoystickButton(gunnerStation,11);
-  private final JoystickButton gunnerPadArmToAmpPositionButton = new JoystickButton(gunnerStation,12);
+  private final JoystickButton gunnerPadArmToIntakePositionButton = new JoystickButton(gunnerStation, 5);
+  private final JoystickButton gunnerPadArmToIntakePositionButton2 = new JoystickButton(gunnerStation, 7);
+  private final JoystickButton gunnerPadArmToStowedPositionButton = new JoystickButton(gunnerStation, 6);
+  private final JoystickButton gunnerPadArmToStowedPositionButton2 = new JoystickButton(gunnerStation, 8);
+  private final JoystickButton gunnerPadArmToPodiumSpeakerPositionButton = new JoystickButton(gunnerStation, 4);
+  private final JoystickButton gunnerPadArmToCloseSpeakerPositionButton = new JoystickButton(gunnerStation, 11);
+  private final JoystickButton gunnerPadArmToAmpPositionButton = new JoystickButton(gunnerStation, 12);
   
 
 
@@ -165,13 +167,24 @@ public class RobotContainer {
     double delay = SmartDashboard.getNumber("Delay", 0);
     sendableChooser = AutoBuilder.buildAutoChooser();
     sendableChooser.addOption("Do Nothing", new DoNothingCommand());
-    sendableChooser.addOption("One Note Auto", new OneNoteAutoAndMoveOut(s_Swerve, arm, intakeSubsystem, shooter, delay));
-    sendableChooser.addOption("Left One Note Auto", new OneNoteLeftAutoAndMoveOut(s_Swerve, arm, intakeSubsystem, shooter, delay));
-    sendableChooser.addOption("Right One Note Auto", new OneNoteRightAutoAndMoveOut(s_Swerve, arm, intakeSubsystem, shooter, delay));
-    sendableChooser.addOption("Center two note", new TwoNoteAuto(s_Swerve, arm, intakeSubsystem, shooter, delay));
-    sendableChooser.addOption("drive back", new DriveBackwards(s_Swerve));
+
+    sendableChooser.addOption("Center One Note Auto", new OneNoteAutoAndMoveOut(s_Swerve, arm, intakeSubsystem, shooter, delay));
+    sendableChooser.addOption("Center Two Note Auto", new TwoNoteAuto(s_Swerve, arm, intakeSubsystem, shooter, delay));
+    sendableChooser.addOption("Red Amp Two Note Auto", new RedAmpSideTwoNote(s_Swerve, arm, intakeSubsystem, shooter));
+    sendableChooser.addOption("Blue Amp Two Note Auto", new BlueAmpSideTwoNote(s_Swerve, arm, intakeSubsystem, shooter));
+
+    sendableChooser.addOption("Red Amp One Note Auto", new OneNoteLeftAutoAndMoveOut(s_Swerve, arm, intakeSubsystem, shooter, delay));
+    sendableChooser.addOption("Red Source One Note Auto", new OneNoteRightAutoAndMoveOut(s_Swerve, arm, intakeSubsystem, shooter, delay));
+    sendableChooser.addOption("Red Source Shallow One Note Auto", new OneNoteShallowRightAutoAndMoveOut(s_Swerve, arm, intakeSubsystem, shooter, delay));
+
+    sendableChooser.addOption("Blue Amp One Note Auto", new OneNoteRightAutoAndMoveOut(s_Swerve, arm, intakeSubsystem, shooter, delay));
+    sendableChooser.addOption("Blue Source One Note Auto", new OneNoteLeftAutoAndMoveOut(s_Swerve, arm, intakeSubsystem, shooter, delay));
+    sendableChooser.addOption("Blue Source Shallow One Note Auto", new OneNoteShallowLeftAutoAndMoveOut(s_Swerve, arm, intakeSubsystem, shooter, delay));
+
     
 
+    
+    sendableChooser.addOption("drive back", new DriveBackwards(s_Swerve));
     SmartDashboard.putData("Auto Mode", sendableChooser);
   }
 
@@ -203,8 +216,12 @@ public class RobotContainer {
     gunnerArmUpSlowButton.onFalse(new InstantCommand(() -> arm.stop()));
     gunnerArmDownSlowButton.onFalse(new InstantCommand(() -> arm.stop()));
     gunnerArmToCloseSpeakerPositionButton.whileTrue(new MoveArmToAngle(arm, Constants.SPEAKER_SHOOTING_ARM_ANGLE, 3.0));
+    
     gunnerPadArmToIntakePositionButton.whileTrue(new MoveArmToAngle(arm, Constants.FLOOR_INTAKE_ARM_ANGLE, 3.0));
     gunnerPadArmToStowedPositionButton.whileTrue(new MoveArmToAngle(arm, Constants.STOWED_ARM_ANGLE, 3.0));
+    gunnerPadArmToIntakePositionButton2.whileTrue(new MoveArmToAngle(arm, Constants.FLOOR_INTAKE_ARM_ANGLE, 3.0));
+    gunnerPadArmToStowedPositionButton2.whileTrue(new MoveArmToAngle(arm, Constants.STOWED_ARM_ANGLE, 3.0));
+
     gunnerPadArmToPodiumSpeakerPositionButton.whileTrue(new MoveArmToAngle(arm, Constants.PODIUM_SHOOTING_ARM_ANGLE, 3.0));
     gunnerPadArmToCloseSpeakerPositionButton.whileTrue(new MoveArmToAngle(arm, Constants.SPEAKER_SHOOTING_ARM_ANGLE, 3.0));
     gunnerPadArmToAmpPositionButton.whileTrue(new MoveArmToAngle(arm, Constants.AMP_SCORING_ARM_ANGLE, 3.0));
