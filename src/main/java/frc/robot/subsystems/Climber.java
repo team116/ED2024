@@ -18,8 +18,8 @@ public class Climber extends SubsystemBase {
       climberMotor.set(-1.0);
    }
 
-   public void pullUpSlow() {
-      climberMotor.set(-0.5);
+   public void pullDown() {
+      climberMotor.set(0.5);
    }
 
    public void stop() {

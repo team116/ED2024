@@ -43,6 +43,10 @@ public class Arm extends SubsystemBase {
         armRotationMotor.burnFlash();
     }
 
+    public void moveUpFast() {
+        armRotationMotor.set(1.0);
+    }
+
     public void moveUp() {
         armRotationMotor.set(0.65); // TODO: Find a good speed for this
     }
@@ -57,6 +61,10 @@ public class Arm extends SubsystemBase {
 
     public void moveDownSlow() {
         armRotationMotor.set(-0.1);
+    }
+
+    public void moveDownFast() {
+        armRotationMotor.set(-1.0);
     }
 
     public void stop() {

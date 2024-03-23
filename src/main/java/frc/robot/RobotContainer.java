@@ -30,6 +30,8 @@ import frc.robot.autos.primitives.OutTakeCommand;
 import frc.robot.autos.primitives.PrepNoteToShoot;
 import frc.robot.autos.primitives.RunIntakeMotorAnyDirection;
 import frc.robot.autos.primitives.RunShooterAtPower;
+import frc.robot.autos.primitives.RunShooterAtPowerAndDuration;
+import frc.robot.autos.primitives.RunShooterAtSplitPowerAndDuration;
 import frc.robot.autos.primitives.DriveDistanceAtAngle.Direction;
 import frc.robot.autos.primitives.RunIntakeMotorAnyDirection.RollerDirection;
 import frc.robot.commands.*;
@@ -100,7 +102,10 @@ public class RobotContainer {
   private final JoystickButton gunnerPadArmToCloseSpeakerPositionButton = new JoystickButton(gunnerStation, 11);
   private final JoystickButton gunnerPadArmToAmpPositionButton = new JoystickButton(gunnerStation, 12);
   
-
+  private final JoystickButton gunnerPadIntakeAssistIntakeOnButton = new JoystickButton(gunnerStation, 14);
+  private final JoystickButton gunnerPadIntakeAssistOffButton1 = new JoystickButton(gunnerStation, 13);
+  private final JoystickButton gunnerPadIntakeAssistOffButton2 = new JoystickButton(gunnerStation, 9);
+  private final JoystickButton gunnerPadIntakeAssistVomitOnButton = new JoystickButton(gunnerStation, 10);
 
   private final JoystickButton gunnerClimberUpButton = new JoystickButton(gunnerLogitech, 8);
   private final JoystickButton gunnerClimberUpSlowButton  = new JoystickButton(gunnerLogitech, 7);
@@ -114,6 +119,11 @@ public class RobotContainer {
   // private final POVButton dpadRight = new POVButton(driver, 90);
   private final POVButton dpadDown = new POVButton(driver, 180);
   // private final POVButton dpadLeft = new POVButton(driver, 270);
+
+  private final POVButton gunnerDpadUp = new POVButton(gunnerLogitech, 0);
+  private final POVButton gunnerDpadRight = new POVButton(gunnerLogitech, 90);
+  private final POVButton gunnerDpadDown = new POVButton(gunnerLogitech, 180);
+  private final POVButton gunnerDpadLeft = new POVButton(gunnerLogitech, 270);
 
    /* Subsystems */
   // private final UselessArm arm = new UselessArm(); // don't need these right now
@@ -226,10 +236,13 @@ public class RobotContainer {
     gunnerPadArmToCloseSpeakerPositionButton.whileTrue(new MoveArmToAngle(arm, Constants.SPEAKER_SHOOTING_ARM_ANGLE, 3.0));
     gunnerPadArmToAmpPositionButton.whileTrue(new MoveArmToAngle(arm, Constants.AMP_SCORING_ARM_ANGLE, 3.0));
 
-
+    gunnerPadIntakeAssistIntakeOnButton.onTrue(new InstantCommand(() -> intakeSubsystem.runAssistRollersToConsume()));
+    gunnerPadIntakeAssistOffButton1.onTrue(new InstantCommand(() ->intakeSubsystem.stopAssistMotor()));
+    gunnerPadIntakeAssistOffButton2.onTrue(new InstantCommand(() ->intakeSubsystem.stopAssistMotor()));
+    gunnerPadIntakeAssistVomitOnButton.onTrue(new InstantCommand(() -> intakeSubsystem.runAssistRollersToVomit()));
 
     gunnerClimberUpButton.onTrue(new InstantCommand(() -> climber.pullUp()));
-    gunnerClimberUpSlowButton.onTrue(new InstantCommand(() -> climber.pullUpSlow()));
+    gunnerClimberUpSlowButton.onTrue(new InstantCommand(() -> climber.pullDown()));
     gunnerClimberUpButton.onFalse(new InstantCommand(() -> climber.stop()));
     gunnerClimberUpSlowButton.onFalse(new InstantCommand(() -> climber.stop()));
 
@@ -240,6 +253,14 @@ public class RobotContainer {
     gunnerIntakeThenPrepNoteButton.onFalse(new PrepNoteToShoot(intakeSubsystem));
     gunnerAmpScoringButton.whileTrue(new AmpScoring(shooter, intakeSubsystem, arm));
     gunnerSpeakerScoringButton.whileTrue(new SpeakerScoringClose(shooter, intakeSubsystem, arm));
+
+    //gunnerDpadUp.whileTrue(new TrapScoring(shooter, intakeSubsystem, arm));
+    gunnerDpadUp.whileTrue(new RunShooterAtSplitPowerAndDuration(shooter, 0.3, Double.POSITIVE_INFINITY));
+    gunnerDpadDown.whileTrue(new RunShooterAtSplitPowerAndDuration(shooter, 0.1, Double.POSITIVE_INFINITY));
+    gunnerDpadLeft.whileTrue(new RunShooterAtSplitPowerAndDuration(shooter, 0.4, Double.POSITIVE_INFINITY));
+    gunnerDpadRight.whileTrue(new RunShooterAtSplitPowerAndDuration(shooter, 0.2, Double.POSITIVE_INFINITY));
+
+    //
     // XBox
     /*
 

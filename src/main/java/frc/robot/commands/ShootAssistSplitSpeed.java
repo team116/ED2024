@@ -7,15 +7,15 @@ import frc.robot.HelperFunctions;
 import frc.robot.autos.primitives.ConfirmShooterSpeed;
 import frc.robot.autos.primitives.IntakeCommand;
 import frc.robot.autos.primitives.MoveArmToAngle;
-import frc.robot.autos.primitives.RunShooterAtPowerAndDuration;
+import frc.robot.autos.primitives.RunShooterAtSplitPowerAndDuration;
 import frc.robot.subsystems.Arm;
 import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.Shooter;
 
-public class ShootAssist extends SequentialCommandGroup {
+public class ShootAssistSplitSpeed extends SequentialCommandGroup {
 
-    public ShootAssist(Shooter shooter, IntakeSubsystem intake, Arm arm, double angle, double power) {
-        RunShooterAtPowerAndDuration runShooterAtPowerAndDuration = new RunShooterAtPowerAndDuration(shooter, power, Double.POSITIVE_INFINITY);
+    public ShootAssistSplitSpeed(Shooter shooter, IntakeSubsystem intake, Arm arm, double angle, double power) {
+        RunShooterAtSplitPowerAndDuration runShooterAtSplitPowerAndDuration = new RunShooterAtSplitPowerAndDuration(shooter, power, Double.POSITIVE_INFINITY);
         MoveArmToAngle moveArmToAngle = new MoveArmToAngle(arm, angle, 2.0);
 
         double desiredShooterSpeed = HelperFunctions.getShooterRPMsFromShooterPower(power);
@@ -32,7 +32,7 @@ public class ShootAssist extends SequentialCommandGroup {
         addCommands(
             new ParallelDeadlineGroup(
                 aimReadyFire, 
-                runShooterAtPowerAndDuration
+                runShooterAtSplitPowerAndDuration
             )
         );
     }    

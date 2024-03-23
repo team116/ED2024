@@ -26,8 +26,8 @@ public class TwoNoteAuto extends SequentialCommandGroup {
         MoveArmToAngle moveArmToShootingAngle = new MoveArmToAngle(arm, Constants.SPEAKER_SHOOTING_ARM_ANGLE, 3.0);
         PrepNoteToShoot prepNoteToShoot = new PrepNoteToShoot(intakeSubsystem);
 
-        DriveDistanceAtAngle driveForwardToSpeaker = new DriveDistanceAtAngle(swerve, 111, Direction.FORWARD);
-        DriveDistanceAtAngle driveOutOfZone = new DriveDistanceAtAngle(swerve, 111, Direction.REVERSE, Speed.FAST);
+        DriveDistanceAtAngle driveForwardToSpeaker = new DriveDistanceAtAngle(swerve, 93, Direction.FORWARD);  // Original 111
+        DriveDistanceAtAngle driveOutOfZone = new DriveDistanceAtAngle(swerve, 93, Direction.REVERSE, Speed.FAST);  // Original 111
 
         ParallelCommandGroup intakeNoteAndPrepareToShoot = new ParallelCommandGroup(
             driveForwardToSpeaker,
@@ -63,6 +63,7 @@ public class TwoNoteAuto extends SequentialCommandGroup {
         addCommands(
             new InstantCommand(() -> SmartDashboard.putNumber("autoStart TwoNote", Timer.getFPGATimestamp())),
             shootingSequence,
+            new InstantCommand(() -> intakeSubsystem.runAssistRollersToVomitSlow()),
             driveOutOfZone,
             new MoveArmToAngle(arm, Constants.FLOOR_INTAKE_ARM_ANGLE, 2.0),
             intakeNoteAndPrepareToShoot,

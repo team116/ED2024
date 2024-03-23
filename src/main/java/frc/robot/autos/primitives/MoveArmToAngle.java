@@ -41,13 +41,13 @@ private static final double EPSILON = 0.1;
                 if (absDiff < CLOSE_EPSILON) {
                     armSubsystem.moveDownSlow();
                 } else {
-                    armSubsystem.moveDown();
+                    armSubsystem.moveDownFast();
                 }
             } else {
                 if (absDiff < CLOSE_EPSILON) {
                     armSubsystem.moveUpSlow();
                 } else {
-                    armSubsystem.moveUp();
+                    armSubsystem.moveUpFast();
                 }
             }
         }

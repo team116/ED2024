@@ -26,9 +26,11 @@ public class RunIntakeMotorAnyDirection extends DurationCommand {
     public void initialize() {
         super.initialize();
         if (direction == RollerDirection.CONSUME) {
-            intake.runRollersToConsume();
+            //intake.runRollersToConsume();
+            intake.runBothRollersToConsume();
         } else {
-            intake.runRollersToVomit();
+            //intake.runRollersToVomit();
+            intake.runBothRollersToVomit();
         } 
     }
 
@@ -39,7 +41,8 @@ public class RunIntakeMotorAnyDirection extends DurationCommand {
 
     @Override
     public void end(boolean interrupted) {
-        intake.stopMotor();
+        //intake.stopMotor();
+        intake.stopBothMotors();
         super.end(interrupted);
     }
 

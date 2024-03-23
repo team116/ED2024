@@ -57,7 +57,7 @@ public final class RobotSpecificConstants {
     private static final class FRC2024Robot implements SpecificConstants {
         public double getFrontToBackAxleToAxleInches() { return 24.875; }
         public double getSideToSideTreadCenterToTreadCenterInches() { return 24.5; }
-        public double getAngleOffsetDegreesMod0() { return 73.916015625; }
+        public double getAngleOffsetDegreesMod0() { return 149.501984375 + 180; }  // this one moved  old (73.916015625)
         public double getAngleOffsetDegreesMod1() { return 61.34765625/*241.34765625*/; }  // motor inversion 180
         public double getAngleOffsetDegreesMod2() { return 192.744140625; }
         public double getAngleOffsetDegreesMod3() { return 199.248046875/*19.248046875*/; }  // motor inversion 180
